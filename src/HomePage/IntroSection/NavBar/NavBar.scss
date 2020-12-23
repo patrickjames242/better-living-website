@@ -1,0 +1,115 @@
+
+@use 'helpers/general' as *;
+@use 'helpers/colors';
+
+
+.HomePage{
+    .NavBar{
+        display: grid;
+        justify-content: space-between;
+        grid-auto-flow: column;
+        align-items: center;
+        
+        .brocoli-image {
+            object-fit: contain;
+        }
+        
+        > .logo-and-title-holder{
+            display: grid;
+            grid-auto-flow: column;
+            align-items: center;
+            gap: 1rem;
+
+            .better-living-title{
+                font: {
+                    weight: 500;
+                    size: 1.1rem;
+                }
+                color: colors.$off-black-title;
+                display: grid;
+                gap: 0.1rem;
+            }
+            .brocoli-image.left{
+                @include setProps(height width, 3rem);
+            }
+        }
+
+        > .nav-link-container{
+            display: grid;
+            grid-auto-flow: column;
+            gap: 1rem;
+            align-items: center;
+            
+            .nav-link{
+                font-size: 1rem;
+                @include greenBGOnHover;
+                @include setProps(padding-left padding-right, 1rem);
+                @include setProps(padding-top padding-bottom, 0.6rem);
+
+                &.selected{
+                    color: colors.$theme-green;
+                }
+            }
+        }
+
+
+        > .menu-svg{
+            fill: colors.$off-black-title;
+            @include setProps(height width, 1.5rem);
+            display: none;
+            @include bounceOnHover;
+        }
+
+        position: relative;
+
+        > .brocoli-image.center{
+            @include setProps(height width, 2.5rem);
+            position: absolute;
+            @include setProps(left top, 50%);
+            transform: translate(-50%, -50%);
+            display: none;
+        }
+
+        
+
+        > .web-app-button{
+            padding: 0.9rem;
+            @include setProps(padding-left padding-right, 1.2rem);
+            align-self: center;
+            background-color: colors.$theme-green;
+            margin-left: 1rem;
+            color: white;
+            border-radius: 0.8rem;
+            font-size: 0.95rem;
+            @include bounceOnHover;
+            
+            @include respondToSmallMaxSize{
+                background-color: unset;
+                color: colors.$theme-green;
+                padding: 0;
+                font-size: 1rem;
+                @media (max-width: 21.875rem){
+                    display: none;
+                }
+            }
+        }
+
+        @media (max-width: 63rem) {
+            > .logo-and-title-holder{
+                display: none;
+            }
+            > .nav-link-container{
+                display: none;
+            }
+            > .menu-svg{
+                display: unset;
+            }
+            > .brocoli-image.center{
+                display: unset;
+            }
+        }
+
+        
+    }
+
+}

@@ -1,0 +1,99 @@
+
+@use 'helpers/general' as *;
+@use 'helpers/colors';
+
+.IntroSection{
+
+    margin-top: 4rem;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 2rem;
+
+    @include setProps(margin-left margin-right, auto);
+
+    @include respondToMediumMaxSize{
+        grid-template-columns: unset;
+        max-width: 40rem;
+        @include respondToSmallMaxSize{
+            margin-top: 3rem;
+        }
+    }
+  
+    > .left-side{
+        display: grid;
+        gap: 0.8rem;
+        > .top-subtitle{
+            text-transform: uppercase;
+            color: colors.$theme-green;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        > .title{
+            font-weight: bold;
+            line-height: 1.2;
+            font-size: 3rem;
+            @include respondToSmallMaxSize{                
+                font-size: 2.2rem;
+            }
+        }
+        > .description{
+            line-height: 1.5;
+            color: gray(0.6);
+            font-size: 1rem;
+        }
+
+        > .services-container{
+
+            $spacing: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: -$spacing;
+            margin-bottom: -$spacing;
+            
+            > .service{
+
+                display: grid;
+                grid-auto-flow: column;
+                align-items: center;
+                margin-left: $spacing;
+                margin-bottom: $spacing;
+                gap: 0.7rem;
+
+                svg{
+                    fill: colors.$theme-green;
+                    width: 1.3rem;
+                }
+
+                > .title{
+                    font-weight: 500;
+                    text-transform: uppercase;
+                    font-size: 0.8rem;
+                }
+            }
+        }
+
+        > .learn-more-button{
+            $color: colors.$off-black-title;
+            @include setProps(padding-top padding-bottom, 0.8rem);
+            @include setProps(padding-left padding-right, 1rem);
+            justify-self: start;
+            color: $color;
+            font-size: 0.95rem;
+            border-radius: 0.8rem;
+            border: 0.15rem solid $color;
+            margin-top: 0.7rem;
+            @include bounceOnHover;
+            
+        }
+    }
+
+    > .right-side{
+        display: grid;
+        justify-items: center;
+        svg{
+            width: 80%;
+        }
+    }
+
+}

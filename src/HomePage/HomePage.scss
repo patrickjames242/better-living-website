@@ -1,0 +1,16 @@
+@use 'helpers/general' as *;
+
+.HomePage{
+    
+    --screen-side-insets: 2.5rem;
+    padding: var(--screen-side-insets);
+    @include setProps(padding-top padding-bottom, 1.5rem);
+    
+    max-width: 78rem;
+    @include setProps(margin-left margin-right, auto);
+
+    @include respondToSmallMaxSize{
+        --screen-side-insets: 1.5rem;
+    }
+
+}
