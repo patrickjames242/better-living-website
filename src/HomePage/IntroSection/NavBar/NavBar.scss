@@ -1,20 +1,40 @@
 
 @use 'helpers/general' as *;
 @use 'helpers/colors';
-
+@use 'sass:color';
 
 .HomePage{
+
+    --nav-bar-height: 6rem;
+
+    @include respondToSmallMaxSize{
+        --nav-bar-height: 4rem;
+    }
+
     .NavBar{
+        position: fixed;
+        @include setProps(left right top, 0);
+        background-color: color.adjust(white, $alpha: -0.2);
+        backdrop-filter: blur(10px);
+        box-shadow: 50px 0 0 black;
+    }
+
+    .NavBar > .content{
+
+        @include setProps(padding-left padding-right, var(--screen-side-insets));
+        @include setProps(margin-left margin-right, auto);
+        max-width: var(--max-screen-width);
+
         display: grid;
         justify-content: space-between;
         grid-auto-flow: column;
         align-items: center;
-        
-        .brocoli-image {
-            object-fit: contain;
-        }
-        
+
+
+        height: var(--nav-bar-height);
+
         > .logo-and-title-holder{
+        
             display: grid;
             grid-auto-flow: column;
             align-items: center;
@@ -29,8 +49,13 @@
                 display: grid;
                 gap: 0.1rem;
             }
-            .brocoli-image.left{
+
+            .brocoli-image{
                 @include setProps(height width, 3rem);
+                object-fit: contain;
+                @include respondToSmallMaxSize{
+                    @include setProps(height width, 2.5rem);
+                }
             }
         }
 
@@ -52,7 +77,6 @@
             }
         }
 
-
         > .menu-svg{
             fill: colors.$off-black-title;
             @include setProps(height width, 1.5rem);
@@ -60,55 +84,31 @@
             @include bounceOnHover;
         }
 
-        position: relative;
-
-        > .brocoli-image.center{
-            @include setProps(height width, 2.5rem);
-            position: absolute;
-            @include setProps(left top, 50%);
-            transform: translate(-50%, -50%);
-            display: none;
-        }
-
-        
 
         > .web-app-button{
             padding: 0.9rem;
             @include setProps(padding-left padding-right, 1.2rem);
             align-self: center;
             background-color: colors.$theme-green;
-            margin-left: 1rem;
             color: white;
             border-radius: 0.8rem;
             font-size: 0.95rem;
             @include bounceOnHover;
-            
-            @include respondToSmallMaxSize{
-                background-color: unset;
-                color: colors.$theme-green;
-                padding: 0;
-                font-size: 1rem;
-                @media (max-width: 21.875rem){
-                    display: none;
-                }
-            }
         }
 
-        @media (max-width: 63rem) {
-            > .logo-and-title-holder{
-                display: none;
-            }
+        @media (max-width: 63rem){
+
             > .nav-link-container{
                 display: none;
             }
             > .menu-svg{
                 display: unset;
             }
-            > .brocoli-image.center{
-                display: unset;
+            
+            > .web-app-button{
+                display: none;
             }
         }
-
         
     }
 

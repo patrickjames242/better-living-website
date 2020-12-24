@@ -1,12 +1,16 @@
 @use 'helpers/general' as *;
 
 .HomePage{
+
+    
+
+    max-width: var(--max-screen-width);
     
     --screen-side-insets: 2.5rem;
-    padding: var(--screen-side-insets);
-    @include setProps(padding-top padding-bottom, 1.5rem);
-    
-    max-width: 78rem;
+    --max-screen-width: 78rem;
+
+    @include setProps(padding-left padding-right, var(--screen-side-insets));
+    padding-top: var(--nav-bar-height);
     @include setProps(margin-left margin-right, auto);
 
     @include respondToSmallMaxSize{
