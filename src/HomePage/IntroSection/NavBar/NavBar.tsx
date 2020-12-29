@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, {useLayoutEffect, useState } from 'react';
 import { Optional } from '../../../helpers/general';
 import brocoliImage from './website-brocoli.png';
 import './NavBar.scss';
 import MenuSVG from './MenuSVG';
 
-
+function getShouldShowShadow(){
+    const x = window.pageYOffset > 20;
+    return x;
+}
 
 function NavBar() {
 
@@ -17,8 +20,24 @@ function NavBar() {
     }
 
     const [currentSelection, setCurrentSelection] = useState<Optional<Selection>>(null);
+    
+    const [shouldShowShadow, setShouldShowShadow] = useState(getShouldShowShadow());
 
-    return <nav className="NavBar">
+    useLayoutEffect(() => {
+        setShouldShowShadow(getShouldShowShadow());
+        const listener = () => {
+            setShouldShowShadow(getShouldShowShadow());
+        }
+        window?.addEventListener('scroll', listener);
+        return () => window?.removeEventListener('scroll', listener);
+    }, []);
+
+    
+
+    return <nav className={[
+        "NavBar", 
+        ...(shouldShowShadow ? ["scrolled-up"] : []),
+    ].join(' ')}>
         <div className="content">
             <div className="logo-and-title-holder">
                 <img alt="" src={brocoliImage} className="brocoli-image" />

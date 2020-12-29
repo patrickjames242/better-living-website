@@ -12,11 +12,18 @@
     }
 
     .NavBar{
+        
         position: fixed;
         @include setProps(left right top, 0);
         background-color: color.adjust(white, $alpha: -0.2);
         backdrop-filter: blur(10px);
-        box-shadow: 50px 0 0 black;
+        z-index: 100;
+        box-shadow: 0 0 1rem color.adjust(black, $alpha: -1);
+        transition: box-shadow 0.2s;
+
+        &.scrolled-up{
+            box-shadow: 0 0 1rem color.adjust(black, $alpha: -0.8);
+        }
     }
 
     .NavBar > .content{

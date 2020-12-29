@@ -1,0 +1,168 @@
+
+@use 'helpers/general' as *;
+@use 'helpers/colors';
+@use 'sass:color';
+
+.VeggieFoodSection{
+
+    display: grid;
+    gap: 3rem;
+    margin-bottom: 1000px;
+    position: relative;
+    @include setProps(padding-top padding-bottom, 4rem);
+    overflow: visible;
+
+    @mixin respondToScrollableWidth {
+        @media(max-width: 59.38rem){
+            @content;
+        }
+    }
+
+    @include respondToScrollableWidth{
+        gap: 1rem;
+        @include setProps(padding-top padding-bottom, 2rem);
+    }
+    
+
+    > .background-view{
+        z-index: -1;
+        width: 100vw;
+        position: absolute;
+        height: 100%;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: gray(0.96);
+    }
+
+    > .title-view{
+
+        display: grid;
+        justify-content: center;
+        text-align: center;
+        // gap: 1.5rem;
+        justify-items: center;
+
+        // .bar{
+        //     height: 0.4rem;
+        //     background-color: colors.$theme-green;
+        //     width: 9rem;
+        //     border-radius: 10000000000px;
+        // }
+
+        > .subtitle{
+            text-transform: uppercase;
+            font-size: 0.91rem;
+            // font-weight: 600;
+            font-weight: 500;
+            color: colors.$theme-green;
+        }
+
+        > .title{
+            font-weight: bold;
+            font-size: 2.2rem;
+            margin-top: 0.5rem;
+        }
+
+        .description{
+            color: gray(0.5);
+            max-width: 50rem;
+            font-weight: 300;
+            margin-top: 1.3rem;
+        }
+
+        @include respondToSmallMaxSize{
+            > .subtitle{
+                font-size: 0.8rem;
+            }
+            > .title{
+                font-size: 1.7rem;
+            }
+        }
+    }
+
+
+    > .info-boxes{
+
+        @include setProps(margin-left margin-right, calc(var(--screen-side-insets) * -1));
+        
+        display: grid;
+
+        @include setCustomScrollBarStyle();
+        @include respondToScrollableWidth{
+            overflow-x: scroll;
+            
+        }
+
+        > .content-holder{
+
+            --item-width: 22rem;
+
+            gap: 2rem;
+            display: inline-grid;
+            grid-template-columns: repeat(auto-fill, var(--item-width));
+            justify-content: center;
+            @include setProps(padding-left padding-right, var(--screen-side-insets));
+            
+            @include respondToScrollableWidth{
+                grid-template-columns: unset;
+                justify-content: unset;
+                grid-auto-flow: column;
+                grid-auto-columns: var(--item-width);
+                @include setProps(padding-top padding-bottom, 2.2rem);
+                --item-width: 20rem;
+                gap: 1.5rem;
+            }
+
+            > .info-box{
+                
+                display: grid;
+                gap: 1rem;
+
+                background-color: white;
+
+                border-radius: 1.2rem;
+                overflow: hidden;
+                padding: 1.4rem;
+
+                @include respondToScrollableWidth {
+                    gap: 0.7rem;
+                    padding: 1.2rem;
+                }
+
+                box-shadow: 0 0 2rem color.adjust(black, $alpha: -1);
+    
+                transition-duration: 0.2s;
+                transition-timing-function: ease-out;
+                transition-property: transform, box-shadow;
+
+                &:hover{
+                    transform: scale(1.05);
+                    box-shadow: 0 0 2rem color.adjust(black, $alpha: -0.9);
+                }
+
+                > svg{
+                    @include setProps(width height, 2.5rem);
+                    @include respondToScrollableWidth {
+                        @include setProps(width height, 2.2rem);
+                    }
+                }
+                
+                > .title{
+                    font-weight: bold;
+                    font-size: 1.1rem;
+                    @include respondToScrollableWidth(){
+                        font-size: 1rem;
+                    }
+                }
+
+                > .description{
+                    font-size: 0.9rem;
+                    color: colors.$off-black-subtitle;
+                }
+            }
+        }
+
+        
+    }
+}
+
