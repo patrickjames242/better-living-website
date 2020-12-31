@@ -63,8 +63,7 @@ const NavBarMenuButton = () => {
 
     // dismisses menu whenever menu button is hidden due to responsiveness
     useEffect(() => {
-        function listener (this: MediaQueryList, ev: MediaQueryListEvent) {
-            
+        function listener (ev: MediaQueryListEvent) {
             if (ev.matches === false) setIsPresented(false);
         }
         navBarCollapseMediaQuery.addEventListener('change', listener);

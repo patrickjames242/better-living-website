@@ -22,10 +22,12 @@
     }
 
     .description{
-        color: gray(0.5);
+        line-height: 1.7;
+        color: gray(0.6);
         max-width: 50rem;
-        font-weight: 300;
+        font-weight: 400;
         margin-top: 1.3rem;
+        font-size: 1rem;
     }
 
     @include respondToSmallMaxSize{
@@ -34,6 +36,10 @@
         }
         > .title{
             font-size: 1.7rem;
+        }
+
+        > .description{
+            font-size: 0.91rem;
         }
     }
     

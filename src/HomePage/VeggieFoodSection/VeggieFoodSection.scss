@@ -19,7 +19,7 @@
 
     @include respondToScrollableWidth{
         gap: 1rem;
-        padding-top: 2rem;
+        padding-top: 2.5rem;
         padding-bottom: 0.5rem;
     }
     
@@ -43,7 +43,6 @@
         @include setCustomScrollBarStyle();
         @include respondToScrollableWidth{
             overflow-x: scroll;
-            
         }
 
         > .content-holder{
@@ -55,6 +54,18 @@
             grid-template-columns: repeat(auto-fill, var(--item-width));
             justify-content: center;
             @include setProps(padding-left padding-right, var(--screen-side-insets));
+
+
+            @mixin respondToSmallCardsWidth{
+                @media (max-width: 77rem){
+                    @content;
+                }
+            }
+
+            @include respondToSmallCardsWidth{
+                --item-width: max(min(20rem, 100vw - 5rem), 12rem);
+                gap: 1.25rem;
+            }
             
             @include respondToScrollableWidth{
                 grid-template-columns: unset;
@@ -62,14 +73,13 @@
                 grid-auto-flow: column;
                 grid-auto-columns: var(--item-width);
                 @include setProps(padding-top padding-bottom, 2.2rem);
-                --item-width: 20rem;
-                gap: 1.5rem;
             }
 
             > .info-box{
                 
                 display: grid;
                 gap: 1rem;
+                align-content: start;
 
                 background-color: white;
 
@@ -77,12 +87,13 @@
                 overflow: hidden;
                 padding: 1.4rem;
 
-                @include respondToScrollableWidth {
+                @include respondToSmallCardsWidth{
                     gap: 0.7rem;
-                    padding: 1.2rem;
+                    padding: 1.1rem;
+
                 }
 
-                box-shadow: 0 0 2rem color.adjust(black, $alpha: -1);
+                box-shadow: 0 0 2rem rgba(black, 0);
     
                 transition-duration: 0.2s;
                 transition-timing-function: ease-out;
@@ -97,27 +108,25 @@
 
                 > svg{
                     @include setProps(width height, 2.5rem);
-                    @include respondToScrollableWidth {
-                        @include setProps(width height, 2.2rem);
+                    @include respondToSmallCardsWidth{
+                        @include setProps(width height, 2rem);
                     }
                 }
                 
                 > .title{
                     font-weight: bold;
                     font-size: 1.1rem;
-                    @include respondToScrollableWidth(){
-                        font-size: 1rem;
+                    @include respondToSmallCardsWidth{
+                        font-size: 0.95rem;
                     }
                 }
 
                 > .description{
-                    font-size: 0.9rem;
+                    font-size: 0.85rem;
                     color: colors.$off-black-subtitle;
                 }
             }
-        }
-
-        
+        }        
     }
 }
 
