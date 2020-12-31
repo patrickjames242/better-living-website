@@ -1,4 +1,5 @@
 import React from 'react';
+import SectionTitleView from '../SectionTitleView/SectionTitleView';
 import BurgerSVG from './icons/BurgerSVG';
 import SaladSVG from './icons/SaladSVG';
 import SoupSVG from './icons/SoupSVG';
@@ -12,12 +13,13 @@ export interface VeggieFoodSectionProps{
 function VeggieFoodSection(props: VeggieFoodSectionProps){
     return <div className="VeggieFoodSection">
         <div className="background-view"/>
-        <div className="title-view">
-            <div className="subtitle">Check Out Our Food</div>
-            <div className="title">Serving Vegetarian Breakfast & Lunch</div>
-            {/* <div className="bar"/> */}
-            <div className="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut libero unde doloribus dicta. Delectus neque reiciendis doloribus illum nostrum illo, itaque sed alias. Minima neque voluptate optio, accusantium quidem placeat error unde fugit?</div>
-        </div>
+        
+        <SectionTitleView 
+            subtitle="Check Out Our Food"
+            title={"Serving Vegetarian Breakfast & Lunch"}
+            description={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut libero unde doloribus dicta. Delectus neque reiciendis doloribus illum nostrum illo, itaque sed alias. Minima neque voluptate optio, accusantium quidem placeat error unde fugit?"}
+        />
+
         <div className="info-boxes">
             <div className="content-holder">
             {[
@@ -59,7 +61,6 @@ function VeggieFoodSection(props: VeggieFoodSectionProps){
                 </div>
             )}
             </div>
-            
         </div>
     </div>
 }

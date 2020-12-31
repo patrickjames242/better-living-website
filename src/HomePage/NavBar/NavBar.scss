@@ -3,6 +3,12 @@
 @use 'helpers/colors';
 @use 'sass:color';
 
+$nav-bar-collapse-max-width: 63rem;
+
+:root{
+    --nav-bar-collapse-max-width: #{$nav-bar-collapse-max-width};
+}
+
 .HomePage{
 
     --nav-bar-height: 6rem;
@@ -12,18 +18,25 @@
     }
 
     .NavBar{
-        
+
+        @mixin get-box-shadow($show-shadow){
+            $shadow-color: color.adjust(black, $alpha: if($show-shadow, -0.9, -1));
+            box-shadow: 0 0 0.8rem $shadow-color;
+        }
+
         position: fixed;
         @include setProps(left right top, 0);
         background-color: color.adjust(white, $alpha: -0.2);
         backdrop-filter: blur(10px);
         z-index: 100;
-        box-shadow: 0 0 1rem color.adjust(black, $alpha: -1);
+        @include get-box-shadow($show-shadow: false);
         transition: box-shadow 0.2s;
 
         &.scrolled-up{
-            box-shadow: 0 0 1rem color.adjust(black, $alpha: -0.8);
+            @include get-box-shadow($show-shadow: true);
         }
+
+        
     }
 
     .NavBar > .content{
@@ -100,10 +113,11 @@
             color: white;
             border-radius: 0.8rem;
             font-size: 0.95rem;
+            font-weight: 500;
             @include bounceOnHover;
         }
 
-        @media (max-width: 63rem){
+        @media (max-width: $nav-bar-collapse-max-width){
 
             > .nav-link-container{
                 display: none;
@@ -120,3 +134,4 @@
     }
 
 }
+

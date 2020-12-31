@@ -131,7 +131,7 @@ $response-small-max-size: 48rem;
         content: '';
         position: absolute;
         @include setProps(left right top bottom, 0);
-        background-color: rgba(black, 0.2);
+        background-color: rgba(black, 0.1);
         opacity: 0;
         transition-property: opacity;
         transition-duration: 0.2s;

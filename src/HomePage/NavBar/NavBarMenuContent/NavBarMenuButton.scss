@@ -1,0 +1,116 @@
+@use 'helpers/colors';
+@use 'helpers/general' as *;
+
+$triangle-top-inset: 0.3rem;
+$triangle-right-inset: 1rem;
+$triangle-width: 0.9rem; 
+$triangle-height: 0.63rem;
+
+$fill-color: white;
+$menu-width: 13rem;
+
+:root{
+    --nav-bar-menu-triangle-width: #{$triangle-width};
+    --nav-bar-menu-triangle-right-inset: #{$triangle-right-inset};
+}
+
+.HomePage .NavBar .NavBarMenu{
+
+    position: fixed;
+
+    width: $menu-width;
+    background-color: transparent;
+    
+    filter: drop-shadow(0 0 5rem rgba(black, 0.3));
+
+    transform-origin: calc(#{$menu-width} - #{$triangle-right-inset + ($triangle-width / 2)}) top;
+
+    opacity: 0;
+    transform: scale(0.7);
+
+    pointer-events: none;
+
+    transition-property: opacity, transform;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-out;
+
+    &.presented{
+        transform: scale(1);
+        opacity: 1;
+        pointer-events: unset;
+    }
+    
+    > .triangle{
+        fill: $fill-color;
+        position: absolute;
+        right: $triangle-right-inset;
+        width: $triangle-width;
+        height: $triangle-height;
+        top: $triangle-top-inset;
+    }
+
+    .NavBarMenuContent{
+
+        margin-top: $triangle-height + $triangle-top-inset;
+        background-color: $fill-color;
+        border-radius: 0.5rem;
+        
+
+        $side-padding: 1.3rem;
+
+        > .menu-items{
+            padding-top: 0.7rem;
+            
+            
+            > .menu-item{
+
+                cursor: pointer;
+                @include setProps(padding-left padding-right, $side-padding);
+                @include setProps(padding-top padding-bottom, 0.9rem);
+                color: gray(0.3);
+                font-size: 0.95rem;
+                transition-property: background-color, color;
+                transition-duration: 0.2s;
+                
+                position: relative;
+
+                &::after{
+                    content: '';
+                    $height: 1px;
+                    position: absolute;
+                    bottom: -($height / 2);
+                    height: $height;
+                    left: $side-padding;
+                    right: 0;
+                    background-color: gray(0.95);
+                }
+
+                @media(hover: hover){
+                    &:hover{
+                        background-color: rgba(colors.$theme-green, 0.1);
+                        color: colors.$theme-green;
+                    }
+                }
+            }
+        }
+        
+        
+        > .web-app-button{
+            @include setProps(margin-top margin-bottom, 1rem);
+            @include setProps(margin-left margin-right, $side-padding);
+            
+            text-align: center;
+            display: block;
+            @include setProps(padding-top padding-bottom, 0.8rem);
+            background-color: colors.$theme-green;
+            color: white;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border-radius: 0.5rem;
+            @include dimOnHover;
+        }
+        
+    }
+
+    
+}

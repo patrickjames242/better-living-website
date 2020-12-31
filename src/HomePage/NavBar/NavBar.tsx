@@ -1,26 +1,23 @@
-import React, {useLayoutEffect, useState } from 'react';
-import { Optional } from '../../../helpers/general';
+
+import React, { useLayoutEffect, useState } from 'react';
+import { Optional } from '../../helpers/general';
 import brocoliImage from './website-brocoli.png';
 import './NavBar.scss';
-import MenuSVG from './MenuSVG';
+import NavBarMenuButton from './NavBarMenuContent/NavBarMenuButton';
+import { NavLinkSelection, allNavLinkSelections, titleForNavLinkSelection, BETTER_LIVING_APP_URL } from './helpers';
 
-function getShouldShowShadow(){
+
+function getShouldShowShadow() {
     const x = window.pageYOffset > 20;
     return x;
 }
 
+
+
 function NavBar() {
 
-    enum Selection {
-        pricing,
-        aboutUs,
-        testimonials,
-        history,
-        contactUs,
-    }
+    const [currentSelection, setCurrentSelection] = useState<Optional<NavLinkSelection>>(null);
 
-    const [currentSelection, setCurrentSelection] = useState<Optional<Selection>>(null);
-    
     const [shouldShowShadow, setShouldShowShadow] = useState(getShouldShowShadow());
 
     useLayoutEffect(() => {
@@ -32,10 +29,11 @@ function NavBar() {
         return () => window?.removeEventListener('scroll', listener);
     }, []);
 
-    
+
+
 
     return <nav className={[
-        "NavBar", 
+        "NavBar",
         ...(shouldShowShadow ? ["scrolled-up"] : []),
     ].join(' ')}>
         <div className="content">
@@ -46,13 +44,7 @@ function NavBar() {
                 </div>
             </div>
             <div className="nav-link-container">
-                {[
-                    Selection.pricing,
-                    Selection.aboutUs,
-                    Selection.testimonials,
-                    Selection.history,
-                    Selection.contactUs,
-                ].map((selection, index) =>
+                {allNavLinkSelections.map((selection, index) =>
                     <div
                         className={[
                             "nav-link",
@@ -62,25 +54,21 @@ function NavBar() {
                         onClick={() => {
                             setCurrentSelection(selection);
                         }}
-                    >{(() => {
-                        switch (selection) {
-                            case Selection.pricing: return 'Pricing';
-                            case Selection.aboutUs: return 'About Us';
-                            case Selection.testimonials: return 'Testimonials';
-                            case Selection.history: return 'History';
-                            case Selection.contactUs: return 'Constact Us';
-                        }
-                    })()}</div>
+                    >{titleForNavLinkSelection(selection)}</div>
                 )}
             </div>
-            <MenuSVG className="menu-svg" />
-            <a className="web-app-button" target="_blank" href="https://betterlivingnassau.com" rel="noreferrer">
+
+            <a className="web-app-button" target="_blank" href={BETTER_LIVING_APP_URL} rel="noreferrer">
                 Go to Web App
             </a>
+            <NavBarMenuButton />
         </div>
-
 
     </nav>
 }
 
 export default NavBar;
+
+
+
+
