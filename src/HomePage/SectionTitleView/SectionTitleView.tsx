@@ -9,7 +9,7 @@ export interface SectionTitleViewProps{
 function SectionTitleView(props: SectionTitleViewProps){
     return <div className="SectionTitleView">
         <div className="subtitle">{props.subtitle}</div>
-        <div className="title">{props.title}</div>
+        <h2 className="title">{props.title}</h2>
         {props.description != null && <div className="description">{props.description}</div>}
     </div>
 }

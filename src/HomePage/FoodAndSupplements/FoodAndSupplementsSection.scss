@@ -1,7 +1,92 @@
 
+@use 'helpers/general' as *;
+@use 'helpers/colors';
+
 .FoodAndSupplementsSection{
-    height: 100rem;
-    // background-color: red;
+    
+    display: grid;
+    gap: 2rem;
+
+    margin-bottom: 10rem;
+
+    @mixin respondToSingleColumnWidth{
+        @media(max-width: 30rem){
+            @content;
+        }
+    }
+
+    @include respondToSmallMaxSize{
+        gap: 1.7rem;
+    }
+
+    > .list-items{
+
+        $items-vertical-spacing: 1rem;
+
+        display: grid;
+        gap: 1.3rem;
+        justify-items: start;
+        max-width: 46rem;
+        grid-template-columns: 1fr 1fr;
+        @include setProps(margin-left margin-right, auto);
+
+        @include respondToSingleColumnWidth{
+            grid-template-columns: unset;
+            justify-content: center;
+            justify-items: center;
+            max-width: 20rem;
+            gap: $items-vertical-spacing;
+        }
+
+        > .column{
+            
+            display: grid;
+            gap: $items-vertical-spacing;
+            align-content: start;
+
+            @include respondToSingleColumnWidth{
+                &:last-child:not(.see-more){
+                    display: none;
+                }
+            }
+            
+            > .list-item{
+
+                display: grid;
+                grid-template-columns: auto 1fr;
+                gap: 1.3rem;
+    
+                > .title{
+                    font-size: 1rem;
+                    @include respondToSingleColumnWidth(){
+                        font-size: 0.91rem;
+                    }
+                }
+    
+                > svg{
+                    @include setProps(width height, 1.65rem);
+                    fill: colors.$theme-green;
+                }
+            }
+        }
+    }
+
+    > .see-more-button{
+        @include setProps(margin-left margin-right, auto);
+        background-color: gray(0.95);
+        font-size: 1rem;
+        color: gray(0.3);
+        padding: 1rem;
+        border-radius: 0.7rem;
+        justify-self: center;
+        @include dimOnHover();
+
+        display: none;
+
+        @include respondToSingleColumnWidth{
+            display: block;
+        }
+    }
     
 }
 

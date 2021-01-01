@@ -131,16 +131,15 @@ $response-small-max-size: 48rem;
         content: '';
         position: absolute;
         @include setProps(left right top bottom, 0);
-        background-color: rgba(black, 0.1);
-        opacity: 0;
-        transition-property: opacity;
+        background-color: rgba(black, 0);
+        transition-property: background-color;
         transition-duration: 0.2s;
         z-index: 100;
     }
 
     @media(hover: hover){
         &:hover::after{
-            opacity: 1;
+            background-color: rgba(black, 0.1);
         }
     }
 }
