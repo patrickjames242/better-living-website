@@ -5,11 +5,10 @@
 
 .VeggieFoodSection{
 
-    display: grid;
-    gap: 3rem;
     position: relative;
     @include setProps(padding-top padding-bottom, 4rem);
     overflow: visible;
+    text-align: center;
 
     @mixin respondToScrollableWidth {
         @media(max-width: 59.38rem){
@@ -18,7 +17,6 @@
     }
 
     @include respondToScrollableWidth{
-        gap: 1rem;
         padding-top: 2.5rem;
         padding-bottom: 0.5rem;
     }
@@ -28,13 +26,41 @@
         width: 100vw;
         position: absolute;
         height: 100%;
-        top: 50%; left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: gray(0.97);
+        top: 0; left: 50%;
+        transform: translateX(-50%);
+        background-color: colors.$gray-background;
+    }
+
+    > .see-todays-menu{
+        
+        @include setProps(margin-left margin-right, auto);
+
+        margin-top: 1.3rem;
+        padding: 1.1rem;
+        @include setProps(padding-top padding-bottom, 0.8rem);
+
+        border: 0.15rem solid colors.$theme-green;
+        border-radius: 1rem;
+        display: inline-grid;
+        grid-auto-flow: column;
+        gap: 0.7rem;
+        justify-self: center;
+        align-items: center;
+        
+        > .text{
+            color: colors.$theme-green;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        
+        @include bounceOnHover;
     }
 
 
     > .info-boxes{
+
+        text-align: left;
+        margin-top: 3rem;
 
         @include setProps(margin-left margin-right, calc(var(--screen-side-insets) * -1));
         
@@ -43,6 +69,7 @@
         @include setCustomScrollBarStyle();
         @include respondToScrollableWidth{
             overflow-x: scroll;
+            margin-top: 1rem;
         }
 
         > .content-holder{
@@ -90,7 +117,6 @@
                 @include respondToSmallCardsWidth{
                     gap: 0.7rem;
                     padding: 1.1rem;
-
                 }
 
                 box-shadow: 0 0 2rem rgba(black, 0);

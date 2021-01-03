@@ -144,6 +144,23 @@ $response-small-max-size: 48rem;
     }
 }
 
+@mixin opaqueOnHover($setPosition: true){
+    cursor: pointer;
+    @if $setPosition{
+        position: relative;
+    }
+    
+    opacity: 1;
+    transition-property: opacity;
+    transition-duration: 0.2s;
+
+    @media(hover: hover){
+        &:hover{
+            opacity: 0.5;
+        }
+    }
+}
+
 
 @mixin break-long-words{    
     // I got this from here: https://stackoverflow.com/questions/36418352/css-word-wrap-break-word-wont-work

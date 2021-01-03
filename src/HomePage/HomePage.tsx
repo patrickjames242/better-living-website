@@ -4,6 +4,7 @@ import NavBar from './NavBar/NavBar';
 import './HomePage.scss';
 import VeggieFoodSection from './VeggieFoodSection/VeggieFoodSection';
 import FoodAndSupplementsSection from './FoodAndSupplements/FoodAndSupplements';
+import Footer from './Footer/Footer';
 export interface HomePageProps{
     
 }
@@ -16,6 +17,7 @@ function HomePage(props: HomePageProps){
         <IntroSection/>
         <VeggieFoodSection/>
         <FoodAndSupplementsSection/>
+        <Footer/>
     </div>
 }
 

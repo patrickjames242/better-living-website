@@ -1,0 +1,24 @@
+
+@use 'helpers/colors';
+@use 'helpers/general' as *;
+@use 'sass:color';
+
+.Footer{
+
+    position: relative;
+    
+    > .background-view{
+        background-color: colors.$gray-background;
+        position: absolute;
+        width: 100vw;
+        left: 50%;
+        top: 0;bottom: 0;
+        transform:translateX(-50%);
+        z-index: -1;
+    }
+
+    > .content{
+        height: 15rem;
+        
+    }
+}

@@ -7,7 +7,6 @@
     display: grid;
     gap: 2rem;
 
-    margin-bottom: 10rem;
 
     @mixin respondToSingleColumnWidth{
         @media(max-width: 30rem){
