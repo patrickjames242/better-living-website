@@ -1,0 +1,128 @@
+
+@use 'helpers/colors';
+@use 'helpers/general' as *;
+@use 'sass:color';
+
+
+.AppAndMapSection{
+    
+    @include setProps(padding-top padding-bottom, 5rem);
+    @include setProps(padding-left padding-right, 2rem);
+
+    background-color: colors.$gray-background;
+    border-radius: 1.5rem;
+    margin-bottom: 20rem;
+
+
+    @include respondToMediumMaxSize{
+        @include setProps(padding-top padding-bottom, 3rem);
+    }
+
+    >.content{
+
+        @include setProps(margin-left margin-right, auto);
+        
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 5rem;
+        align-items: center;
+        max-width: 50rem;
+
+        @include respondToMediumMaxSize{
+            gap: 3rem;
+
+            @include respondToSmallMaxSize{
+                grid-template-columns: unset;
+                gap: 2rem;
+            }
+        }
+
+        > .left-side{
+                
+            height: 22rem;
+            overflow: hidden;
+            position: relative;
+            
+            > img{
+                width: 100%;
+            }
+            
+            > .gradient-cover{
+                position: absolute;
+                left: 0; right: 0; bottom: 0;
+                height: 40%;
+                background: linear-gradient(to bottom, rgba(colors.$gray-background, 0), colors.$gray-background);
+                z-index: 100;
+            }
+
+            @include respondToSmallMaxSize{
+                height: 20rem;
+                max-width: 20rem;
+                justify-self: center;
+            }
+
+        }
+    
+        > .right-side{
+
+            display: grid;
+            gap: 1rem;
+            font-size: 1rem;
+
+            > .title{
+                line-height: 1.3;
+                font-weight: bold;
+                font-size: 2.1rem;
+                @include respondToSmallMaxSize{
+                    font-size: 1.8rem;
+                }
+            }
+
+            > .description{
+                color: gray(0.6);
+            }
+
+            > .app-store-buttons{
+                $items-gap: 1rem;
+                $button-height: 2.8125rem;
+
+                margin-left: -$items-gap;
+                margin-top: -$items-gap + 0.5rem;
+                display: flex;
+                flex-wrap: wrap;
+                
+                img{
+                    background-color: transparent;
+                    display: block;
+                    height: $button-height;
+                }
+
+                > *{
+                    margin-left: $items-gap;
+                    margin-top: $items-gap;
+                }
+ 
+            }
+
+            > .web-app-button{
+                margin-top: 0.3rem;
+                display: block;
+                justify-self: start;
+                border: 0.17rem solid colors.$off-black-title;
+                border-radius: 0.7rem;
+                padding: 0.8rem;
+                @include setProps(padding-left padding-right, 0.9rem);
+                display: grid;
+                align-items: center;
+                font-weight: 500;
+                @include bounceOnHover;
+            }
+        }
+    
+
+    }
+
+
+}
+
+

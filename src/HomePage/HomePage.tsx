@@ -5,6 +5,8 @@ import './HomePage.scss';
 import VeggieFoodSection from './VeggieFoodSection/VeggieFoodSection';
 import FoodAndSupplementsSection from './FoodAndSupplements/FoodAndSupplements';
 import Footer from './Footer/Footer';
+import AppAndMapSection from './AppAndMapSection/AppAndMapSection';
+
 export interface HomePageProps{
     
 }
@@ -17,7 +19,8 @@ function HomePage(props: HomePageProps){
         <IntroSection/>
         <VeggieFoodSection/>
         <FoodAndSupplementsSection/>
-        <Footer/>
+        <AppAndMapSection/>
+        {/* <Footer/> */}
     </div>
 }
 
