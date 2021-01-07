@@ -6,16 +6,16 @@
 
 .AppAndMapSection{
     
-    @include setProps(padding-top padding-bottom, 5rem);
+    // @include setProps(padding-top padding-bottom, 5rem);
     @include setProps(padding-left padding-right, 2rem);
 
     background-color: colors.$gray-background;
     border-radius: 1.5rem;
     margin-bottom: 20rem;
 
+    @include setProps(padding-top padding-bottom, 3rem);
 
     @include respondToMediumMaxSize{
-        @include setProps(padding-top padding-bottom, 3rem);
     }
 
     >.content{
@@ -23,14 +23,13 @@
         @include setProps(margin-left margin-right, auto);
         
         display: grid;
-        grid-template-columns: 1fr 1.2fr;
-        gap: 5rem;
+        grid-template-columns: auto 1fr;
+        gap: 4rem;
+        max-width: 56rem;
         align-items: center;
-        max-width: 50rem;
 
         @include respondToMediumMaxSize{
             gap: 3rem;
-
             @include respondToSmallMaxSize{
                 grid-template-columns: unset;
                 gap: 2rem;
@@ -38,26 +37,40 @@
         }
 
         > .left-side{
-                
-            height: 22rem;
-            overflow: hidden;
-            position: relative;
             
-            > img{
-                width: 100%;
-            }
-            
-            > .gradient-cover{
-                position: absolute;
-                left: 0; right: 0; bottom: 0;
-                height: 40%;
-                background: linear-gradient(to bottom, rgba(colors.$gray-background, 0), colors.$gray-background);
-                z-index: 100;
+            > .phone-images-holder{
+
+                position: relative;
+
+                height: 30rem;
+                width: 24rem;
+
+                @include respondToMediumMaxSize{
+                    height: 22rem;
+                    width: 17rem;
+
+                    @include respondToSmallMaxSize{
+                        width: 17.5rem;
+                    }
+                }
+
+                > img{
+                    filter: drop-shadow(0 0 1.5rem rgba(black, 0.25));
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    height: 100%;
+                    &.image-1{
+                        left: 0;
+                    }
+                    &.image-2{
+                        right: 0;
+                        z-index: 1;
+                    }
+                }
             }
 
             @include respondToSmallMaxSize{
-                height: 20rem;
-                max-width: 20rem;
                 justify-self: center;
             }
 
@@ -68,6 +81,7 @@
             display: grid;
             gap: 1rem;
             font-size: 1rem;
+            align-items: center;
 
             > .title{
                 line-height: 1.3;

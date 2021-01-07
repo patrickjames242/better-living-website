@@ -2,6 +2,7 @@
 import React from 'react';
 import './AppAndMapSection.scss';
 import phoneImage from './appPhoneImage.png';
+import phoneImage2 from './appPhoneImage2.png';
 import googlePlayBadge from './google-play-badge.png';
 import appStoreBadge from './app-store-badge.png';
 import { BETTER_LIVING_APP_URL } from '../NavBar/helpers';
@@ -14,8 +15,10 @@ function AppAndMapSection(props: AppAndMapSectionProps) {
     return <div className="AppAndMapSection">
         <div className="content">
             <div className="left-side">
-                <img src={phoneImage} alt="" className="iphone-image" />
-                <div className="gradient-cover" />
+                <div className="phone-images-holder">
+                    <img src={phoneImage2} alt="" className="image-1" />
+                    <img src={phoneImage} alt="" className="image-2" />
+                </div>
             </div>
             <div className="right-side">
                 <div className="title">Download Our Mobile App Today!</div>
