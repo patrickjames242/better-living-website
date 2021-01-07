@@ -6,7 +6,6 @@
 
 .AppAndMapSection{
     
-    // @include setProps(padding-top padding-bottom, 5rem);
     @include setProps(padding-left padding-right, 2rem);
 
     background-color: colors.$gray-background;
@@ -15,17 +14,43 @@
 
     @include setProps(padding-top padding-bottom, 3rem);
 
-    @include respondToMediumMaxSize{
+    display: grid;
+    gap: 5.5rem;    
+    justify-items: center;
+
+    @include respondToSmallMaxSize{
+        gap: 3rem;
+        @include setProps(padding-left padding-right, 1.6rem);
     }
 
-    >.content{
 
-        @include setProps(margin-left margin-right, auto);
+    .text-container{
+        display: grid;
+        gap: 1rem;
+        font-size: 1rem;
+
+        > .title{
+            line-height: 1.3;
+            font-weight: bold;
+            font-size: 2.1rem;
+            @include respondToSmallMaxSize{
+                font-size: 1.6rem;
+            }
+        }
+
+        > .description{
+            color: gray(0.6);
+        }
+    }
+
+
+    > .app-section{
         
+        max-width: 56rem;
+
         display: grid;
         grid-template-columns: auto 1fr;
         gap: 4rem;
-        max-width: 56rem;
         align-items: center;
 
         @include respondToMediumMaxSize{
@@ -37,68 +62,51 @@
         }
 
         > .left-side{
-            
-            > .phone-images-holder{
-
-                position: relative;
-
-                height: 30rem;
+            > div{
                 width: 24rem;
+                @include setProps(margin-left margin-right, auto);
 
                 @include respondToMediumMaxSize{
-                    height: 22rem;
                     width: 17rem;
-
                     @include respondToSmallMaxSize{
-                        width: 17.5rem;
+                        width: unset;
+                        max-width: 20rem;
                     }
                 }
 
-                > img{
-                    filter: drop-shadow(0 0 1.5rem rgba(black, 0.25));
-                    display: block;
-                    position: absolute;
-                    top: 0;
-                    height: 100%;
-                    &.image-1{
-                        left: 0;
-                    }
-                    &.image-2{
-                        right: 0;
-                        z-index: 1;
+                > div{
+                    padding-top: 130%;
+                    position: relative;
+
+                    > .phone-images-holder{
+                        position: absolute;
+                        @include setProps(left right top bottom, 0);
+                        
+                        > img{
+                            filter: drop-shadow(0 0 1.5rem rgba(black, 0.25));
+                            display: block;
+                            position: absolute;
+                            top: 0;
+                            height: 100%;
+                            &.image-1{
+                                left: 0;
+                            }
+                            &.image-2{
+                                right: 0;
+                                z-index: 1;
+                            }
+                        }
                     }
                 }
             }
-
-            @include respondToSmallMaxSize{
-                justify-self: center;
-            }
-
+            
+            
         }
     
         > .right-side{
-
-            display: grid;
-            gap: 1rem;
-            font-size: 1rem;
-            align-items: center;
-
-            > .title{
-                line-height: 1.3;
-                font-weight: bold;
-                font-size: 2.1rem;
-                @include respondToSmallMaxSize{
-                    font-size: 1.8rem;
-                }
-            }
-
-            > .description{
-                color: gray(0.6);
-            }
-
             > .app-store-buttons{
+
                 $items-gap: 1rem;
-                $button-height: 2.8125rem;
 
                 margin-left: -$items-gap;
                 margin-top: -$items-gap + 0.5rem;
@@ -108,14 +116,19 @@
                 img{
                     background-color: transparent;
                     display: block;
-                    height: $button-height;
+                    height: 2.8125rem;
+
+                    @include respondToSmallMaxSize{
+                        height: 2.5rem;
+                    }
                 }
 
                 > *{
                     margin-left: $items-gap;
                     margin-top: $items-gap;
                 }
- 
+
+                
             }
 
             > .web-app-button{
@@ -124,7 +137,7 @@
                 justify-self: start;
                 border: 0.17rem solid colors.$off-black-title;
                 border-radius: 0.7rem;
-                padding: 0.8rem;
+                padding: 0.7rem;
                 @include setProps(padding-left padding-right, 0.9rem);
                 display: grid;
                 align-items: center;
@@ -132,10 +145,34 @@
                 @include bounceOnHover;
             }
         }
-    
-
     }
 
+    > .map-section{
+
+        max-width: 60rem;
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: 1fr 1.6fr;
+        align-items: center;
+
+        > .BetterLivingLocationMap{
+            border-radius: 1.3rem;
+            overflow: hidden;
+            z-index: 1;
+            height: 23rem;
+            width: 100%;
+        }
+
+        @include respondToSmallMaxSize{
+            grid-template-columns: unset;
+            > .BetterLivingLocationMap{
+                grid-row: 1/2;
+                height: 20rem;
+            }
+
+            
+        }
+    }
 
 }
 

@@ -1,13 +1,14 @@
 
 @use 'helpers/colors';
+@use 'helpers/general' as *;
 
-
-.ScrewsWorldLocationMap{
+.BetterLivingLocationMap{
     
     #BetterLivingLocationMap-inner-map-div{
         height: 100%;
         width: 100%;
     }
+
     position: relative;
 
     > .back-to-center-button{
