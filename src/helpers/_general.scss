@@ -99,14 +99,14 @@ $response-small-max-size: 48rem;
 
 
 
-@mixin setCustomScrollBarStyle{
+@mixin setCustomScrollBarStyle($color: gray(0.9)){
     $scroll-bar-size: 0.65rem;
     &::-webkit-scrollbar {
         @include setProps(width height, $scroll-bar-size);
     }
     &::-webkit-scrollbar-thumb {
         border-radius: $scroll-bar-size / 2;
-        background-color: gray(0.8);
+        background-color: $color;
     }
 }
 

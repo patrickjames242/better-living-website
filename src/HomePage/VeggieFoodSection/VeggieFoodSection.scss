@@ -66,7 +66,7 @@
         
         display: grid;
 
-        @include setCustomScrollBarStyle();
+        @include setCustomScrollBarStyle($color: gray(0.85));
         @include respondToScrollableWidth{
             overflow-x: scroll;
             margin-top: 1rem;

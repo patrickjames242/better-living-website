@@ -6,6 +6,7 @@ import VeggieFoodSection from './VeggieFoodSection/VeggieFoodSection';
 import FoodAndSupplementsSection from './FoodAndSupplements/FoodAndSupplements';
 import Footer from './Footer/Footer';
 import AppAndMapSection from './AppAndMapSection/AppAndMapSection';
+import HealthTipsSection from './HealthTipsSection/HealthTipsSection';
 
 export interface HomePageProps{
     
@@ -20,7 +21,8 @@ function HomePage(props: HomePageProps){
         <VeggieFoodSection/>
         <FoodAndSupplementsSection/>
         <AppAndMapSection/>
-        {/* <Footer/> */}
+        <HealthTipsSection/>
+        <Footer/>
     </div>
 }
 
