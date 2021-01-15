@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Optional } from '../../helpers/general';
 import { BETTER_LIVING_APP_URL } from '../NavBar/helpers';
 import ArrowSVG from './arrowSVG';
@@ -8,7 +8,12 @@ import './HealthTipsSection.scss';
 import { fetchHealthTips, HealthTip, ThumbnailType } from './helpers';
 import TextIconSVG from './textIconSVG';
 
-
+const setStylePropIfNeeded = (element: HTMLDivElement, key: string, value: string) => {
+    const prevValue = element.style.getPropertyValue(key);
+    if (prevValue !== value){
+        element.style.setProperty(key, value);
+    }
+}
 
 
 function HealthTipsSection() {
@@ -19,21 +24,60 @@ function HealthTipsSection() {
         fetchHealthTips().then(x => setHealthTips(x));
     }, []);
 
-    return <div className="HealthTipsSection">
-        <div className="content">
-            <div className="title-cell">
-                <div className="title">Check Out Our Health Tips</div>
-                <div className="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo repellendus accusamus!</div>
-                <a href={BETTER_LIVING_APP_URL} className="see-all-button">
-                    See All Tips
-                </a>
+    const rootDiv = useRef<HTMLDivElement>(null);
+    const scrollingDiv = useRef<HTMLDivElement>(null);
+    const leftGradientDiv = useRef<HTMLDivElement>(null);
+    const rightGradientDiv = useRef<HTMLDivElement>(null);
+
+    const listener = useCallback(() => {
+        if ((rootDiv.current!.getBoundingClientRect().left ?? 0) > 1){
+            
+            const _scrollingDiv = scrollingDiv.current!;
+            const padding = 10;
+
+            setStylePropIfNeeded(leftGradientDiv.current!, 'opacity', _scrollingDiv.scrollLeft >= padding ? '1' : '0');
+            setStylePropIfNeeded(rightGradientDiv.current!, 'opacity', (_scrollingDiv.clientWidth + _scrollingDiv.scrollLeft) >= (_scrollingDiv.scrollWidth - padding) ? '0' : '1');
+
+        } else {
+            setStylePropIfNeeded(leftGradientDiv.current!, 'opacity', '0');
+            setStylePropIfNeeded(rightGradientDiv.current!, 'opacity', '0');
+        }
+    }, []);
+
+    useEffect(() => {        
+        const _scrollingDiv = scrollingDiv.current!;
+        window.addEventListener('resize', listener);
+        _scrollingDiv?.addEventListener('scroll', listener);
+        return () => {
+            window.removeEventListener('resize', listener);
+            _scrollingDiv.removeEventListener('scroll', listener);
+        }
+    }, [listener]);
+
+    useLayoutEffect(listener, [listener, healthTips]);
+
+    return <div className="HealthTipsSection" ref={rootDiv}>
+        
+        <div className="left-gradient" ref={leftGradientDiv}/>
+        <div className="right-gradient" ref={rightGradientDiv}/>
+
+        <div className="content-holder" ref={scrollingDiv}>
+            <div className="content">
+                <div className="title-cell">
+                    <div className="title">Check Out Our Health Tips</div>
+                    <div className="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo repellendus accusamus!</div>
+                    <a href={BETTER_LIVING_APP_URL} className="see-all-button">
+                        See All Tips
+                    </a>
+                </div>
+                {healthTips?.map((x, index) => <HealthTipCell key={index} healthTip={x} />)}
             </div>
-            {healthTips?.map((x, index) => <HealthTipCell key={index} healthTip={x} />)}
         </div>
     </div>
 }
 
 export default HealthTipsSection;
+
 
 
 function HealthTipCell(props: { healthTip: HealthTip }) {

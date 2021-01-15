@@ -48,7 +48,6 @@ function AppAndMapSection(props: AppAndMapSectionProps) {
             </div>
             <BetterLivingLocationMap />
         </div>
-
     </div>
 }
 

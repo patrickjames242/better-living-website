@@ -26,8 +26,6 @@ export async function fetchHealthTips(): Promise<HealthTip[]> {
 
             const data = json.data as any[];
 
-            console.log(data);
-
             return data.map((x: any) => {
                 const healthTip: HealthTip = {
                     date: new Date(x.date),

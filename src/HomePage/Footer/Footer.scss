@@ -6,6 +6,7 @@
 .Footer{
 
     position: relative;
+    white-space: pre-wrap;
     
     > .background-view{
         background-color: colors.$gray-background;
@@ -17,8 +18,142 @@
         z-index: -1;
     }
 
-    > .content{
-        height: 15rem;
+    $subtitle-color: gray(0.65);
+
+    > .content{ 
+        padding-top: 3rem;
+        font-size: 1rem;
+
+        > .top-section{
+    
+            display: grid;
+            grid-auto-flow: column;
+            justify-content: space-between;
+            align-items: start;
+            gap: 2rem;
+
+           
+
+            > * {
+                display: grid;
+                gap: 0.4rem;
+                
+                > .links-title{
+                    font-weight: 600;
+                    margin-bottom: 0.7rem;
+                }
+
+                $highlight-color: colors.$off-black-title;
         
+                > .item{
+                    color: $subtitle-color;
+
+                    word-break: break-word;
+                    word-wrap: break-word; // for microsoft edge on windows
+
+                    $transition-duration: 0.2s;
+                    transition-property: color;
+                    transition-duration: $transition-duration;
+
+                    > svg{
+                        fill: $subtitle-color;
+                        transition-property: fill;
+                        transition-duration: $transition-duration;
+                    }
+
+                    @media(hover:hover){
+                        &:hover{
+                            color: $highlight-color;
+                            > svg{
+                                fill: $highlight-color;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            
+            
+            > .left-text-container{
+
+                display: grid;
+                gap: 1rem;
+                max-width: 17rem;
+                
+                > .title{
+                    font-weight: bold;
+                    font-size: 1.5rem;
+                }
+                > .subtitle{
+                    color: $subtitle-color;
+                }
+            }
+
+            > .contact-column{
+        
+                > .item{
+                    align-items: center;
+                    display: grid;
+                    grid-template-columns: auto 1fr;
+                    gap: 1rem;
+
+                    > svg{
+                        @include setProps(padding-top padding-bottom, 0.3rem);
+                        
+                        @include setProps(height width, 1.3rem);
+                    }
+                }
+            }
+
+            
+        }
+
+        > .bottom-section{
+            border-top: 0.05rem solid gray(0.9);
+            display: grid;
+            justify-items: center;
+            justify-content: center;
+            color: gray(0.6);
+            margin-top: 1.8rem;
+            @include setProps(padding-top padding-bottom, 1.5rem);
+            text-align: center;
+        }
+
+        @media(max-width: 70rem){
+            > .top-section{
+                grid-template-columns: 1fr 1fr;
+                grid-auto-flow: row;       
+            }
+        }
+
+        @media(max-width: 40rem){
+            font-size: 0.93rem;
+
+            > .top-section{
+                grid-template-columns: 1fr;
+    
+                > *{
+                    text-align: center;
+                    > .links-title{
+                        font-size: 1rem;
+                    }
+                }
+                > .left-text-container{
+                    justify-self: center;
+                    text-align: center;
+                    > .title{
+                        font-size: 1.3rem;
+                    }
+                }
+                > .contact-column{
+                    justify-self: center;
+                    text-align: left;
+                    > .links-title{
+                        justify-self: center;
+                    }
+                }
+            }
+
+        }
     }
 }

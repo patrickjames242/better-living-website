@@ -3,19 +3,36 @@
 @use 'helpers/colors';
 
 .HealthTipsSection{
-
     $top-shadow-padding: 5rem;
 
+    position: relative;
     margin-top: -$top-shadow-padding;
-    overflow-x: scroll;
-    padding-bottom: 3rem;
-    padding-top: $top-shadow-padding;
-    
-
     @include setProps(margin-left margin-right, calc(var(--screen-side-insets) * -1));
-    @include setCustomScrollBarStyle();
+    
+    > .left-gradient, .right-gradient{
+        z-index: 10;
+        position: absolute;
+        width: 5rem;
+        pointer-events: none;
+    }
+    > .left-gradient{
+        @include setProps(left top bottom, 0);
+        background: linear-gradient(to right, white, rgba(white, 0));
+    }
+    > .right-gradient{
+        @include setProps(right top bottom, 0);
+        background: linear-gradient(to left, white, rgba(white, 0));
+    }
+    
+    
+    > .content-holder{
+        padding-top: $top-shadow-padding;
+        overflow-x: scroll;
+        padding-bottom: 3rem;
+        @include setCustomScrollBarStyle();
+    }
 
-    > .content{
+    > .content-holder > .content{
         
         $cell-height: 23rem;
         
