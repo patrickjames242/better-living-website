@@ -92,15 +92,17 @@
             > .contact-column{
         
                 > .item{
-                    align-items: center;
+                    // align-items: center;
                     display: grid;
                     grid-template-columns: auto 1fr;
                     gap: 1rem;
 
+                    @include setProps(padding-top padding-bottom, 0.1rem);
+
                     > svg{
-                        @include setProps(padding-top padding-bottom, 0.3rem);
-                        
+                        margin-top: 0.15em;           
                         @include setProps(height width, 1.3rem);
+                        overflow: visible;
                     }
                 }
             }

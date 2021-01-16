@@ -1,10 +1,10 @@
 
 import React, { useLayoutEffect, useState } from 'react';
-import { Optional } from '../../helpers/general';
+import { BETTER_LIVING_APP_URL, Optional } from '../../helpers/general';
 import brocoliImage from './website-brocoli.png';
 import './NavBar.scss';
 import NavBarMenuButton from './NavBarMenuButton/NavBarMenuButton';
-import { NavLinkSelection, allNavLinkSelections, titleForNavLinkSelection, BETTER_LIVING_APP_URL } from './helpers';
+import { NavLinkSelection, allNavLinkSelections, titleForNavLinkSelection } from './helpers';
 
 
 function getShouldShowShadow() {

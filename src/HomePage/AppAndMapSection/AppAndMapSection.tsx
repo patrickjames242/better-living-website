@@ -5,8 +5,8 @@ import phoneImage from './appPhoneImage.png';
 import phoneImage2 from './appPhoneImage2.png';
 import googlePlayBadge from './google-play-badge.png';
 import appStoreBadge from './app-store-badge.png';
-import { BETTER_LIVING_APP_URL } from '../NavBar/helpers';
 import BetterLivingLocationMap from '../../helpers/BetterLivingLocationMap/BetterLivingLocationMap';
+import { BETTER_LIVING_APP_URL } from '../../helpers/general';
 
 export interface AppAndMapSectionProps {
 

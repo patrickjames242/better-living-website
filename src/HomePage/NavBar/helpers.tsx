@@ -24,4 +24,3 @@ export function titleForNavLinkSelection(selection: NavLinkSelection){
     }
 }
 
-export const BETTER_LIVING_APP_URL = 'https://betterlivingnassau.com';

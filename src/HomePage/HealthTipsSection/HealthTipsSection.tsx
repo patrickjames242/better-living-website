@@ -1,7 +1,6 @@
 
 import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { Optional } from '../../helpers/general';
-import { BETTER_LIVING_APP_URL } from '../NavBar/helpers';
+import { BETTER_LIVING_APP_URL, Optional } from '../../helpers/general';
 import ArrowSVG from './arrowSVG';
 import AudioSVG from './audioSVG';
 import './HealthTipsSection.scss';
@@ -66,7 +65,7 @@ function HealthTipsSection() {
                 <div className="title-cell">
                     <div className="title">Check Out Our Health Tips</div>
                     <div className="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo repellendus accusamus!</div>
-                    <a href={BETTER_LIVING_APP_URL} className="see-all-button">
+                    <a href={BETTER_LIVING_APP_URL + '/?initialTabSelection=healthTips'} target="_blank" rel="noreferrer" className="see-all-button">
                         See All Tips
                     </a>
                 </div>
@@ -81,9 +80,8 @@ export default HealthTipsSection;
 
 
 function HealthTipCell(props: { healthTip: HealthTip }) {
-    return <a href={BETTER_LIVING_APP_URL} className="HealthTipCell" onClick={e => {
-        e.preventDefault();
-    }}>
+    const healthTipURL = BETTER_LIVING_APP_URL + '/?initialHealthTipId=' + props.healthTip.id;
+    return <a href={healthTipURL} target="_blank" rel="noreferrer" className="HealthTipCell">
         <div className="thumbnail-box">
             {(() => {
                 if ('thumbnailImageURL' in props.healthTip){

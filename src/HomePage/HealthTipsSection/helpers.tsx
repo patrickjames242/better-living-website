@@ -11,6 +11,7 @@ export type HealthTipThumbnailInfo = { thumbnailType: ThumbnailType.text } |
 { thumbnailType: ThumbnailType.video, thumbnailImageURL: string };
 
 export type HealthTip = {
+    id: number;
     date: Date;
     title: string;
     description: Optional<string>;
@@ -28,6 +29,7 @@ export async function fetchHealthTips(): Promise<HealthTip[]> {
 
             return data.map((x: any) => {
                 const healthTip: HealthTip = {
+                    id: x.id,
                     date: new Date(x.date),
                     title: x.title as string,
                     description: x.article_text as Optional<string>,
