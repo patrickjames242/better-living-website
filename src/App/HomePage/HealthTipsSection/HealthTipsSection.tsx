@@ -1,6 +1,6 @@
 
 import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { BETTER_LIVING_APP_URL, Optional } from '../../helpers/general';
+import { BETTER_LIVING_APP_URL, Optional } from '../../../helpers/general';
 import ArrowSVG from './arrowSVG';
 import AudioSVG from './audioSVG';
 import './HealthTipsSection.scss';

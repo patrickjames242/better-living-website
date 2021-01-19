@@ -9,48 +9,53 @@ import PhoneSVG from './phoneSVG';
 interface ContactUsItem {
     title: string;
     iconSVG: any;
+    href: string;
 }
 
 const contactUsItems: ContactUsItem[] = [
     {
         title: 'info@betterlivingnassau.com',
         iconSVG: MailSVG,
+        href: 'mailto:info@betterlivingnassau.com'
     },
     {
         title: '(242) 323-5473',
         iconSVG: PhoneSVG,
+        href: 'tel:2423235473'
     },
     {
         title: 'Facebook',
         iconSVG: FacebookSVG,
+        href: 'https://www.facebook.com/Better-Living-Health-Center-Deli-1477766185772763'
     },
     {
         title: 'Balfour Ave. & Palm Beach St.\n7:30am - 5pm, Mon - Fri',
         iconSVG: LocationSVG,
+        href: '',
     },
 ];
 
 interface AdditionalLink {
     title: string;
-    link: string;
+    href: string;
 }
 
 const additionalLinks: AdditionalLink[] = [
     {
         title: 'South Bahamas Conference',
-        link: 'https://www.southbahamasconference.org/healthministries',
+        href: 'https://www.southbahamasconference.org/healthministries',
     },
     {
         title: 'NAD Health Ministries',
-        link: 'https://nadhealth.org',
+        href: 'https://nadhealth.org',
     },
     {
         title: 'Positive Choices',
-        link: 'https://www.positivechoices.com',
+        href: 'https://www.positivechoices.com',
     },
     {
         title: 'Nedley Health',
-        link: 'https://nedleyhealth.com',
+        href: 'https://nedleyhealth.com',
     },
 ]
 
@@ -67,7 +72,7 @@ function Footer() {
                     <div className="links-title">Quick Links</div>
                     {allNavLinkSelections.map((x, index) => <a
                         onClick={x => x.preventDefault()}
-                        href="/"
+                        href='/'
                         key={index}
                         className="item"
                     >
@@ -77,8 +82,7 @@ function Footer() {
                 <div className="additional-links">
                     <div className="links-title">Additional Links</div>
                     {additionalLinks.map((x, index) => <a
-                        onClick={x => x.preventDefault()}
-                        href={x.link}
+                        href={x.href}
                         target="_blank"
                         rel="noreferrer"
                         key={index}
@@ -90,8 +94,9 @@ function Footer() {
                 <div className="contact-column">
                     <div className="links-title">Get In Touch</div>
                     {contactUsItems.map((x, index) => <a
-                        onClick={x => x.preventDefault()}
-                        href="/"
+                        href={x.href}
+                        target="_blank"
+                        rel="noreferrer"
                         className="item"
                         key={index}
                     >

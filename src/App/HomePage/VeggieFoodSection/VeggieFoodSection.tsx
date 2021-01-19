@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { BETTER_LIVING_APP_URL } from '../../helpers/general';
+import { BETTER_LIVING_APP_URL } from '../../../helpers/general';
 import SectionTitleView from '../SectionTitleView/SectionTitleView';
 import BurgerSVG from './icons/BurgerSVG';
 import SaladSVG from './icons/SaladSVG';

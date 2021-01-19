@@ -1,6 +1,6 @@
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { BETTER_LIVING_APP_URL, Optional } from '../../../helpers/general';
+import { BETTER_LIVING_APP_URL, Optional } from '../../../general';
 import { allNavLinkSelections, titleForNavLinkSelection } from '../helpers';
 import MenuSVG from '../MenuSVG';
 import  './NavBarMenuButton.scss';

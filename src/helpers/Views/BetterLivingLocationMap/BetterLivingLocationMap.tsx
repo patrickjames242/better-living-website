@@ -3,7 +3,7 @@ import './BetterLivingLocationMap.scss';
 import React, { useRef, useEffect, useMemo } from 'react';
 import mapboxgl from 'mapbox-gl';
 import backToCenterIcon from './back-to-center-icon';
-import { Optional } from '../general';
+import { Optional } from '../../general';
 mapboxgl.accessToken = 'pk.eyJ1IjoicGF0cmlja2hhbm5hMjQyIiwiYSI6ImNqcnh2eWVrczBydGo0OWx2dDUyYjhvNnMifQ.SGbGDXppFmFkdUnBxIyoqA';
 
 

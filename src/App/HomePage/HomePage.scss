@@ -1,0 +1,16 @@
+@use 'helpers/general' as *;
+
+.HomePage{
+
+    --section-spacing: 5rem;
+
+    display: grid;
+    gap: var(--section-spacing);
+    grid-template-columns: minmax(0, 1fr);
+    margin-bottom: var(--section-spacing);
+
+    @include respondToSmallMaxSize{
+        --section-spacing: 3.5rem;
+    }
+
+}

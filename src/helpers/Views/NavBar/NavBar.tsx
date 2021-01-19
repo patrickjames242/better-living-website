@@ -1,10 +1,12 @@
 
 import React, { useLayoutEffect, useState } from 'react';
-import { BETTER_LIVING_APP_URL, Optional } from '../../helpers/general';
+import { BETTER_LIVING_APP_URL, Optional } from '../../general';
 import brocoliImage from './website-brocoli.png';
 import './NavBar.scss';
 import NavBarMenuButton from './NavBarMenuButton/NavBarMenuButton';
 import { NavLinkSelection, allNavLinkSelections, titleForNavLinkSelection } from './helpers';
+import { Link } from 'react-router-dom';
+import { ScreenType } from '../../../App/helpers';
 
 
 function getShouldShowShadow() {
@@ -12,12 +14,9 @@ function getShouldShowShadow() {
     return x;
 }
 
-
-
 function NavBar() {
 
     const [currentSelection, setCurrentSelection] = useState<Optional<NavLinkSelection>>(null);
-
     const [shouldShowShadow, setShouldShowShadow] = useState(getShouldShowShadow());
 
     useLayoutEffect(() => {
@@ -29,20 +28,17 @@ function NavBar() {
         return () => window?.removeEventListener('scroll', listener);
     }, []);
 
-
-
-
     return <nav className={[
         "NavBar",
         ...(shouldShowShadow ? ["scrolled-up"] : []),
     ].join(' ')}>
         <div className="content">
-            <div className="logo-and-title-holder">
+            <Link to={ScreenType.home} className="logo-and-title-holder">
                 <img alt="" src={brocoliImage} className="brocoli-image" />
                 <div className="better-living-title">
                     Better Living
                 </div>
-            </div>
+            </Link>
             <div className="nav-link-container">
                 {allNavLinkSelections.map((selection, index) =>
                     <div
@@ -57,7 +53,6 @@ function NavBar() {
                     >{titleForNavLinkSelection(selection)}</div>
                 )}
             </div>
-
             <a className="web-app-button" target="_blank" href={BETTER_LIVING_APP_URL} rel="noreferrer">
                 Go to Web App
             </a>

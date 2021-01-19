@@ -1,4 +1,4 @@
-import { Optional } from "../../helpers/general";
+import { Optional } from "../../../helpers/general";
 
 export enum ThumbnailType {
     text,
