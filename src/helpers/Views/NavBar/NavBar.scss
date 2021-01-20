@@ -7,15 +7,14 @@ $nav-bar-collapse-max-width: 63rem;
 
 :root{
     --nav-bar-collapse-max-width: #{$nav-bar-collapse-max-width};
-}
-
-.HeaderFooterContainer{
-
     --nav-bar-height: 6rem;
-
+    
     @include respondToSmallMaxSize{
         --nav-bar-height: 4rem;
     }
+}
+
+.HeaderFooterContainer{
 
     .NavBar{
 
@@ -85,7 +84,7 @@ $nav-bar-collapse-max-width: 63rem;
             gap: 1rem;
             align-items: center;
             
-            .nav-link{
+            .NavLink{
                 font-size: 1rem;
                 @include greenBGOnHover;
                 @include setProps(padding-left padding-right, 1rem);

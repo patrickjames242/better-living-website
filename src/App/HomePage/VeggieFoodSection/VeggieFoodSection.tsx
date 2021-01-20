@@ -8,14 +8,10 @@ import SoupSVG from './icons/SoupSVG';
 import './VeggieFoodSection.scss';
 
 
-export interface VeggieFoodSectionProps{
-    
-}
-
-function VeggieFoodSection(props: VeggieFoodSectionProps){
-    return <div className="VeggieFoodSection">
+const VeggieFoodSection: React.ForwardRefRenderFunction<HTMLDivElement, {}> = function VeggieFoodSection(props, ref){
+    return <div ref={ref} className="VeggieFoodSection">
         <div className="background-view"/>
-        <SectionTitleView 
+        <SectionTitleView
             subtitle="Check Out Our Food"
             title={"Serving Vegetarian Breakfast & Lunch"}
             description={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut libero unde doloribus dicta. Delectus neque reiciendis doloribus illum nostrum illo, itaque sed alias. Minima neque voluptate optio, accusantium quidem placeat error unde fugit?"}
@@ -68,4 +64,4 @@ function VeggieFoodSection(props: VeggieFoodSectionProps){
     </div>
 }
 
-export default VeggieFoodSection;
+export default React.forwardRef(VeggieFoodSection);

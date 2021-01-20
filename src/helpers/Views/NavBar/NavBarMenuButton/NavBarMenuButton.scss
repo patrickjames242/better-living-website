@@ -62,8 +62,9 @@ $menu-width: 13rem;
             padding-top: 0.7rem;
             
             
-            > .menu-item{
+            > .NavLink{
 
+                display: block;
                 cursor: pointer;
                 @include setProps(padding-left padding-right, $side-padding);
                 @include setProps(padding-top padding-bottom, 0.9rem);
@@ -71,9 +72,12 @@ $menu-width: 13rem;
                 font-size: 0.95rem;
                 transition-property: background-color, color;
                 transition-duration: 0.15s;
-                
                 position: relative;
 
+                &.selected{
+                    color: colors.$theme-green;
+                }
+                
                 &::after{
                     content: '';
                     $height: 1px;

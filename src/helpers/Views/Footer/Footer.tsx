@@ -1,5 +1,5 @@
 import React from 'react';
-import { allNavLinkSelections, titleForNavLinkSelection } from '../NavBar/helpers';
+import { allScreenTypes, getTitleForScreenType } from '../../../App/helpers';
 import FacebookSVG from './facebookSVG';
 import './Footer.scss';
 import LocationSVG from './locationSVG';
@@ -70,13 +70,13 @@ function Footer() {
                 </div>
                 <div className="quick-links">
                     <div className="links-title">Quick Links</div>
-                    {allNavLinkSelections.map((x, index) => <a
+                    {allScreenTypes.map((x, index) => <a
                         onClick={x => x.preventDefault()}
                         href='/'
                         key={index}
                         className="item"
                     >
-                        {titleForNavLinkSelection(x)}
+                        {getTitleForScreenType(x)}
                     </a>)}
                 </div>
                 <div className="additional-links">

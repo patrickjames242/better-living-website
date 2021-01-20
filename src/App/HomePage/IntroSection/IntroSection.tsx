@@ -6,7 +6,6 @@ import './IntroSection.scss';
 import ClipboardSVG from './icons/clipboard';
 import PillSVG from './icons/pill';
 
-
 function IntroSection() {
 
     return <div className="IntroSection">

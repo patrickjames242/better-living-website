@@ -1,11 +1,9 @@
+
 import React, { useState } from 'react';
 import SectionTitleView from '../SectionTitleView/SectionTitleView';
 import CheckmarkSVG from './CheckmarkSVG';
 import './FoodAndSupplementsSection.scss';
 
-export interface FoodAndSupplementsSectionProps {
-
-}
 
 const products = [
     'Natural Vitamins, Minerals & Supplements',
@@ -30,11 +28,11 @@ const ListItem = (props: { itemString: string }) => {
     </div>
 }
 
-function FoodAndSupplementsSection(props: FoodAndSupplementsSectionProps) {
+const FoodAndSupplementsSection: React.ForwardRefRenderFunction<HTMLDivElement, {}> = function FoodAndSupplementsSection(props, ref) {
 
     const [seeMore, setSeeMore] = useState(false);
 
-    return <div className="FoodAndSupplementsSection">
+    return <div ref={ref} className="FoodAndSupplementsSection">
         <SectionTitleView
             subtitle="Check Out Our Food"
             title={"We Sell Natural Foods & Supplements"}
@@ -59,4 +57,4 @@ function FoodAndSupplementsSection(props: FoodAndSupplementsSectionProps) {
     </div>
 }
 
-export default FoodAndSupplementsSection;
+export default React.forwardRef(FoodAndSupplementsSection);

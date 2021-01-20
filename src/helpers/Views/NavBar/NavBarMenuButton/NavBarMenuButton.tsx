@@ -1,9 +1,10 @@
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { BETTER_LIVING_APP_URL, Optional } from '../../../general';
-import { allNavLinkSelections, titleForNavLinkSelection } from '../helpers';
+import { allScreenTypes, ScreenType } from '../../../../App/helpers';
+import { BETTER_LIVING_APP_URL, compactMap, Optional } from '../../../general';
+import NavLink from '../../NavLink/NavLink';
 import MenuSVG from '../MenuSVG';
-import  './NavBarMenuButton.scss';
+import './NavBarMenuButton.scss';
 
 const getCSSVariableValue = (key: string) => {
     return getComputedStyle(document.body).getPropertyValue(key);
@@ -21,7 +22,7 @@ const navBarCollapseMediaQuery = matchMedia(`(max-width: ${navBarCollapseMaxWidt
 const NavBarMenuButton = () => {
 
     const [isPresented, setIsPresented] = useState(false);
-    
+
 
     const menuSVGRef = useRef<Optional<SVGSVGElement>>(null);
     const navBarMenuRef = useRef<Optional<HTMLDivElement>>(null);
@@ -31,7 +32,7 @@ const NavBarMenuButton = () => {
         navBarMenuRef.current?.style.setProperty('top', (boundingRect?.bottom ?? 0) + 'px');
 
         const iconCenterXFromRight = document.body.clientWidth - ((boundingRect?.right ?? 0) + window.scrollX) + ((boundingRect?.width ?? 0) / 2);
-        
+
         const rightValue = `calc(
             ${iconCenterXFromRight}px - (
                 ${navBarMenuTriangleRightInset} + (${navBarMenuTriangleWidth} / 2)
@@ -63,7 +64,7 @@ const NavBarMenuButton = () => {
 
     // dismisses menu whenever menu button is hidden due to responsiveness
     useEffect(() => {
-        function listener (ev: MediaQueryListEvent) {
+        function listener(ev: MediaQueryListEvent) {
             if (ev.matches === false) setIsPresented(false);
         }
         navBarCollapseMediaQuery.addEventListener('change', listener);
@@ -105,10 +106,9 @@ export default NavBarMenuButton;
 const NavBarMenuContent = React.memo(() => {
     return <div className="NavBarMenuContent">
         <div className="menu-items">
-            {allNavLinkSelections.map((x, index) => {
-                return <div key={index} className="menu-item">
-                    {titleForNavLinkSelection(x)}
-                </div>
+            {compactMap(allScreenTypes, (x, index) => {
+                return x === ScreenType.home ? null :
+                    <NavLink key={index} screenType={x}/>;
             })}
         </div>
         <a className="web-app-button" target="_blank" href={BETTER_LIVING_APP_URL} rel="noreferrer">

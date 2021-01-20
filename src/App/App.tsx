@@ -13,14 +13,16 @@ function App() {
 			<HeaderFooterContainer>
 				<Switch>
 					<Route path={getRouteForScreenType(ScreenType.contactUs)}>
-						<div style={{ height: 100, backgroundColor: 'red' }}></div>
-					</Route>
-					<Route path={getRouteForScreenType(ScreenType.history)}>
-						<div style={{backgroundColor: 'blue', height: 200}}>
-
+						<div style={{ padding: 100, backgroundColor: 'red' }}>
+							Contact Us!
 						</div>
 					</Route>
-					<Route path='/'>
+					<Route path={getRouteForScreenType(ScreenType.history)}>
+						<div style={{backgroundColor: 'blue', padding: 100}}>
+							History!
+						</div>
+					</Route>
+					<Route path='/:section?'>
 						<HomePage />
 					</Route>
 				</Switch>

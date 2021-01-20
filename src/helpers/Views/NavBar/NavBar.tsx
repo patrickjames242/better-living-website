@@ -1,12 +1,13 @@
 
 import React, { useLayoutEffect, useState } from 'react';
-import { BETTER_LIVING_APP_URL, Optional } from '../../general';
+import { BETTER_LIVING_APP_URL, compactMap } from '../../general';
 import brocoliImage from './website-brocoli.png';
 import './NavBar.scss';
 import NavBarMenuButton from './NavBarMenuButton/NavBarMenuButton';
-import { NavLinkSelection, allNavLinkSelections, titleForNavLinkSelection } from './helpers';
 import { Link } from 'react-router-dom';
-import { ScreenType } from '../../../App/helpers';
+import { allScreenTypes, getRouteForScreenType, ScreenType } from '../../../App/helpers';
+import NavLink from '../NavLink/NavLink';
+
 
 
 function getShouldShowShadow() {
@@ -16,7 +17,6 @@ function getShouldShowShadow() {
 
 function NavBar() {
 
-    const [currentSelection, setCurrentSelection] = useState<Optional<NavLinkSelection>>(null);
     const [shouldShowShadow, setShouldShowShadow] = useState(getShouldShowShadow());
 
     useLayoutEffect(() => {
@@ -33,32 +33,23 @@ function NavBar() {
         ...(shouldShowShadow ? ["scrolled-up"] : []),
     ].join(' ')}>
         <div className="content">
-            <Link to={ScreenType.home} className="logo-and-title-holder">
+            <Link to={getRouteForScreenType(ScreenType.home)} className="logo-and-title-holder">
                 <img alt="" src={brocoliImage} className="brocoli-image" />
                 <div className="better-living-title">
                     Better Living
                 </div>
             </Link>
             <div className="nav-link-container">
-                {allNavLinkSelections.map((selection, index) =>
-                    <div
-                        className={[
-                            "nav-link",
-                            ...(currentSelection === selection ? ["selected"] : [])
-                        ].join(' ')}
-                        key={index}
-                        onClick={() => {
-                            setCurrentSelection(selection);
-                        }}
-                    >{titleForNavLinkSelection(selection)}</div>
-                )}
+                {compactMap(allScreenTypes, (selection, index) => {
+                    if (selection === ScreenType.home) return null;
+                    return <NavLink key={index} screenType={selection} />
+                })}
             </div>
             <a className="web-app-button" target="_blank" href={BETTER_LIVING_APP_URL} rel="noreferrer">
                 Go to Web App
             </a>
             <NavBarMenuButton />
         </div>
-
     </nav>
 }
 

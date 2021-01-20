@@ -49,29 +49,39 @@ export function getNumbersList(first: number, last: number): number[] {
 
 // }
 
-// // executes closure if value is not null or undefined and returns its result, otherwise returns null.
-// export function mapOptional<Unwrapped, ReturnVal>(optional: Unwrapped | undefined | null, action: (unwrapped: Unwrapped) => ReturnVal): ReturnVal | null {
-//     if (optional == null) {
-//         return null;
-//     } else {
-//         return action(optional);
-//     }
-// }
+// executes closure if value is not null or undefined and returns its result, otherwise returns null.
+export function mapOptional<Unwrapped, ReturnVal>(optional: Unwrapped | undefined | null, action: (unwrapped: Unwrapped) => ReturnVal): ReturnVal | null {
+    if (optional == null) {
+        return null;
+    } else {
+        return action(optional);
+    }
+}
 
-// export function compactMap<InputType, OutputType>(items: Array<InputType>, transformer: (input: InputType) => OutputType | undefined | null) {
-//     const newItems: OutputType[] = [];
-//     for (const item of items) {
-//         const result = transformer(item);
-//         result != null && newItems.push(result);
-//     }
-//     return newItems;
-// }
+export function compactMap<InputType, OutputType>(items: Array<InputType>, transformer: (input: InputType, index: number) => OutputType | undefined | null) {
+    const newItems: OutputType[] = [];
+    for (let index=0; index < items.length; index++) {
+        const result = transformer(items[index], index);
+        result != null && newItems.push(result);
+    }
+    return newItems;
+}
+
+export function filterString(string: string, filterer: (char: string) => boolean){
+    let resultString = '';
+    for (let x=0; x<string.length; x++){
+        if (filterer(string[x])){
+            resultString += string[x];
+        }
+    }
+    return resultString;
+}
 
 
-// export function isDigit(string: string): boolean {
-//     const regex = /^\d$/;
-//     return regex.test(string);
-// }
+export function isDigit(string: string): boolean {
+    const regex = /^\d$/;
+    return regex.test(string);
+}
 
 
 
