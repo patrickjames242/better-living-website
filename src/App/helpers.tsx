@@ -1,5 +1,5 @@
 import Notification from "../helpers/Notification";
-
+import React from 'react';
 
 export enum ScreenType{
     home = 'home',
@@ -47,5 +47,12 @@ export function getRouteForScreenType(screenType: ScreenType): string{
             return `/${screenType}/`;
     }
 }
+
+export interface AppContextValue{
+    currentScreenType: ScreenType;
+}
+export const AppContext = React.createContext<AppContextValue>({
+    currentScreenType: ScreenType.home,
+});
 
 
