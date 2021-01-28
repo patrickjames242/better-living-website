@@ -6,6 +6,7 @@ import HomePage from './HomePage/HomePage';
 import { BrowserRouter as Router, useLocation, matchPath } from 'react-router-dom';
 import HeaderFooterContainer from '../helpers/Views/HeaderFooterContainer/HeaderFooterContainer';
 import { AppContext, AppContextValue, getRouteForScreenType, ScreenType } from './helpers';
+import { useUpdateLayoutEffect } from '../helpers/general';
 
 function App() {
 	return <Router>
@@ -40,11 +41,25 @@ function _App() {
 		}
 	}, [location.pathname]);
 
+	const screenToDisplay = useMemo(() => {
+		switch (appContext.currentScreenType) {
+			case ScreenType.contactUs:
+			case ScreenType.history:
+				return appContext.currentScreenType;
+			default:
+				return ScreenType.home
+		}
+	}, [appContext.currentScreenType]);
+
+	useUpdateLayoutEffect(() => {
+		window.scrollTo({top: 0});
+	}, [screenToDisplay]);
+
 	return <AppContext.Provider value={appContext}>
 		<div className="App">
 			<HeaderFooterContainer>
 				{(() => {
-					switch (appContext.currentScreenType) {
+					switch (screenToDisplay) {
 						case ScreenType.contactUs:
 							return <div style={{ padding: 100, backgroundColor: 'red' }}>
 								Contact Us!

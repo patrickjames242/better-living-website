@@ -10,12 +10,17 @@ import { HeaderFooterContainerContext, HeaderFooterContainerContextValue } from 
 
 function HeaderFooterContainer(props: React.PropsWithChildren<{}>) {
 
-    const [currentHomeScreenSection, setCurrentHomeScreenSection] = useState<Optional<HomeScreenSection>>(null);
+    const [currentHomeScreenSection, setCurrentHomeScreenSection] = useState<Optional<HomeScreenSection> | undefined>(undefined);
     
     const contextValue: HeaderFooterContainerContextValue = useMemo(() => ({
         currentHomeScreenSection,
-        setCurrentHomeScreenSection,
+        setCurrentHomeScreenSection: (...args) => {
+            // console.log('setCurrentHomeScreenSection called');
+            setCurrentHomeScreenSection(...args);
+        },
     }), [currentHomeScreenSection]);
+
+    // console.log(contextValue.currentHomeScreenSection);
 
     return <HeaderFooterContainerContext.Provider value={contextValue}>
         <div className="HeaderFooterContainer">

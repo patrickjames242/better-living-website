@@ -80,6 +80,9 @@ const NavBarMenuButton = () => {
             onMouseLeave={dismiss}
         />
         <div
+            onClick={() => {
+                setIsPresented(false);
+            }}
             ref={navBarMenuRef}
             onMouseEnter={present}
             onMouseLeave={dismiss}

@@ -25,7 +25,6 @@ function HomePage() {
 
     const appContext = useContext(AppContext);
 
-    const [, activateSpringAnimation] = useSpring(() => ({ y: 0 }));
 
     const getScrollTopValueForElement = useCallback((element: HTMLDivElement) => {
 
@@ -41,18 +40,25 @@ function HomePage() {
         }
     }, []);
 
-    const reactSpringScrollTo = useCallback((yPosition: number) => {
-        activateSpringAnimation({
-            y: yPosition,
-            reset: true,
-            from: { y: window.scrollY },
-            ...({
-                onFrame: (props: any) => {
-                    window.scroll(0, props.y);
-                }
-            } as any),
+    const [, activateSpringAnimation] = useSpring(() => ({ y: 0 }));
+
+    const reactSpringScrollTo = useRef(async (yPosition: number) => {
+        await new Promise<undefined>(resolve => {
+            activateSpringAnimation({
+                y: yPosition,
+                reset: true,
+                from: { y: window.scrollY },
+                onRest: () => {
+                    resolve(undefined)
+                },
+                ...({
+                    onFrame: (props: any) => {
+                        window.scroll(0, props.y);
+                    }
+                } as any),
+            });
         });
-    }, [activateSpringAnimation]);
+    });
 
     const scrollToCurrentSection = useCallback(async () => {
         const topValue = (() => {
@@ -66,13 +72,26 @@ function HomePage() {
             }
         })();
         if (topValue != null) {
-            reactSpringScrollTo(topValue);
+            await reactSpringScrollTo.current(topValue);
         }
-    }, [appContext.currentScreenType, getScrollTopValueForElement, reactSpringScrollTo]);
+    }, [appContext.currentScreenType, getScrollTopValueForElement]);
+
+    const updateNavBarSelectedSection = useRef(false);
+    const previousScreenType = useRef<ScreenType | null>(null);
 
     useEffect(() => {
-        scrollToCurrentSection();
-    }, [scrollToCurrentSection]);
+        if (
+            previousScreenType.current != null && 
+            previousScreenType.current === appContext.currentScreenType
+        ) return;
+
+        updateNavBarSelectedSection.current = false;
+        headerFooterContext?.setCurrentHomeScreenSection(undefined);
+        scrollToCurrentSection().then(() => {
+            updateNavBarSelectedSection.current = true;
+        });
+        previousScreenType.current = appContext.currentScreenType;
+    }, [appContext.currentScreenType, headerFooterContext, scrollToCurrentSection]);
 
     useEffect(() => {
         const notificationUnlisten = GoBackToCurrentHomeScreenSectionNotification.addListener(() => {
@@ -89,6 +108,8 @@ function HomePage() {
             }
         ];
         const windowObserver = () => {
+
+            if (updateNavBarSelectedSection.current === false) return;
 
             const navBarHeight = getCurrentNavBarHeight();
             const windowContainerTop = window.scrollY + navBarHeight;

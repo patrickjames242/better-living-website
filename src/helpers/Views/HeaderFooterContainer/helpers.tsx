@@ -4,8 +4,8 @@ import { Optional } from '../../general';
 
 
 export interface HeaderFooterContainerContextValue{
-    currentHomeScreenSection: Optional<HomeScreenSection>;
-    setCurrentHomeScreenSection: (newSection: Optional<HomeScreenSection>) => void;
+    currentHomeScreenSection: Optional<HomeScreenSection> | undefined;
+    setCurrentHomeScreenSection: (newSection?: Optional<HomeScreenSection>) => void;
 }
 
 export const HeaderFooterContainerContext = React.createContext<Optional<HeaderFooterContainerContextValue>>(null);

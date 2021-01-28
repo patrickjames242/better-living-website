@@ -20,7 +20,16 @@ function NavLink(props: React.PropsWithChildren<{ screenType: ScreenType }>) {
 
     const isSelected = useMemo(() => {
         if (homeScreenTypes.has(appContext.currentScreenType)){
-            return (headerFooterContext?.currentHomeScreenSection ?? ScreenType.home) === props.screenType;
+            const homeScreenSection = (() => {
+                if (headerFooterContext?.currentHomeScreenSection === null){
+                    return ScreenType.home;
+                } else if (headerFooterContext?.currentHomeScreenSection === undefined){
+                    return appContext.currentScreenType;
+                } else {
+                    return headerFooterContext.currentHomeScreenSection;
+                }
+            })();
+            return homeScreenSection === props.screenType;
         } else {
             return matchesCurrentRouteExactly;
         }

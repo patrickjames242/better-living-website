@@ -1,3 +1,4 @@
+import { useLayoutEffect, useRef } from "react";
 
 
 
@@ -83,8 +84,18 @@ export function isDigit(string: string): boolean {
     return regex.test(string);
 }
 
-
-
+// only starts triggering the effect after the first call
+export const useUpdateLayoutEffect: typeof useLayoutEffect = (effect, deps) => {
+    const isFirstRender = useRef(true);
+    useLayoutEffect(() => {
+        if (isFirstRender.current){
+            isFirstRender.current = false;
+        } else {
+            return effect();
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, deps)
+}
 
 // /** filters out any properties whose key is not in the included props array and whose value is not equal to undefiend*/
 // export function getPropsFromObject<ObjType extends object>(obj: ObjType, includedProps: (keyof ObjType)[]) {
