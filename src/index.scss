@@ -3,9 +3,6 @@
 @use 'helpers/colors';
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-
-
-
 *{
     margin: 0;
     padding: 0.02px;
@@ -39,7 +36,16 @@ button:focus, input:focus, textarea:focus, select:focus{
 textarea, input, select{
     border: none;
     font-family: inherit;
+    background-color: transparent;
+    font-size: 1rem;
 }
+
+textarea, input{
+    min-width: 0;
+    -webkit-appearance: none;   
+}
+
+
 
 textarea{
     resize: none;

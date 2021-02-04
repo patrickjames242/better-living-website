@@ -1,5 +1,7 @@
+
 import React from 'react';
-import { allScreenTypes, getTitleForScreenType } from '../../../App/helpers';
+import { allScreenTypes } from '../../../App/helpers';
+import NavLink from '../NavLink/NavLink';
 import FacebookSVG from './facebookSVG';
 import './Footer.scss';
 import LocationSVG from './locationSVG';
@@ -12,7 +14,7 @@ interface ContactUsItem {
     href: string;
 }
 
-const contactUsItems: ContactUsItem[] = [
+export const contactUsItems: ContactUsItem[] = [
     {
         title: 'info@betterlivingnassau.com',
         iconSVG: MailSVG,
@@ -70,14 +72,7 @@ function Footer() {
                 </div>
                 <div className="quick-links">
                     <div className="links-title">Quick Links</div>
-                    {allScreenTypes.map((x, index) => <a
-                        onClick={x => x.preventDefault()}
-                        href='/'
-                        key={index}
-                        className="item"
-                    >
-                        {getTitleForScreenType(x)}
-                    </a>)}
+                    {allScreenTypes.map((x, index) => <NavLink className="item" key={index} screenType={x}/>)}
                 </div>
                 <div className="additional-links">
                     <div className="links-title">Additional Links</div>

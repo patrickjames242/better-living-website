@@ -7,6 +7,7 @@ import { BrowserRouter as Router, useLocation, matchPath } from 'react-router-do
 import HeaderFooterContainer from '../helpers/Views/HeaderFooterContainer/HeaderFooterContainer';
 import { AppContext, AppContextValue, getRouteForScreenType, ScreenType } from './helpers';
 import { useUpdateLayoutEffect } from '../helpers/general';
+import ContactUs from './ContactUs/ContactUs';
 
 function App() {
 	return <Router>
@@ -61,9 +62,7 @@ function _App() {
 				{(() => {
 					switch (screenToDisplay) {
 						case ScreenType.contactUs:
-							return <div style={{ padding: 100, backgroundColor: 'red' }}>
-								Contact Us!
-								</div>;
+							return <ContactUs/>
 						case ScreenType.history:
 							return <div style={{ backgroundColor: 'blue', padding: 100 }}>
 								History!

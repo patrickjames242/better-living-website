@@ -1,0 +1,196 @@
+
+@use 'helpers/general' as *;
+@use 'helpers/colors';
+
+
+.ContactUs{
+    margin-top: 2.5rem;
+    margin-bottom: 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: auto 1fr;
+    column-gap: 6rem;    
+    row-gap: 3rem;
+    grid-template-areas: 
+        "title right-column"
+        "fields right-column";
+
+    @include respondToMediumMaxSize{
+        column-gap: 3rem;
+    }
+
+    @include respondToSmallMaxSize{
+        @include setProps(margin-left margin-right, auto);
+        row-gap: 2rem;
+        grid-template-rows: unset;
+        max-width: 35rem;
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "title"
+            "right-column"
+            "fields";
+
+        @include respondToSmallMaxSize{
+            margin-top: 1rem;
+        }
+    }
+
+    > .title-box{
+        grid-area: title;
+        display: grid;
+        gap: 0.3rem;
+
+        @include respondToSmallMaxSize{
+            gap: 0.5rem;
+        }
+
+        > .title{
+            font-weight: bold;
+            font-size: 3rem;
+            @include respondToSmallMaxSize{
+                font-size: 2.25rem;
+            }
+        }
+
+        > .subtitle{
+            font-size: 1rem;
+            color: gray(0.6);
+        }
+    }
+
+    > .right-column{
+        grid-area: right-column;
+        display: grid;
+        gap: 3rem;
+        align-content: start;
+
+        > .illustration{
+            > svg{
+                max-width: 30rem;
+                display: block;
+            }
+
+            @include respondToSmallMaxSize{
+                display: none;
+            }
+        }
+
+        > .contact-info{
+            
+            display: grid;
+            gap: 1rem;
+            align-content: start;
+            justify-content: start;
+
+            > .item{
+
+                gap: 1rem;
+                grid-template-columns: auto 1fr;
+                display: grid;
+                grid-auto-flow: column;
+                justify-items: start;
+                align-items: center;
+
+                transition-property: opacity;
+                transition-duration: 0.2s;
+
+                @media (hover) {
+                    &:hover{
+                        opacity: 0.5;
+                    }    
+                }
+
+                > .icon-holder{
+                    
+                    @include setProps(height width, 3rem);
+                    border-radius: 1000000rem;
+                    background-color: gray(0.92);
+                    display: grid;
+                    place-content: center;
+
+                    > svg{
+                        @include setProps(height width, 1.3rem);
+                        overflow: visible;
+                        fill: gray(0.5);
+                        display: grid;
+                    }
+                }
+
+                > .text{
+                    white-space: pre-line;
+                    font-size: 1rem;
+                }
+            }
+            
+        }
+    }
+    
+    > .fields{
+        grid-area: fields;
+        display: grid;
+        gap: 1.25rem;
+        
+
+        > .TextField{
+
+            display: grid;
+            gap: 0.5rem;
+
+            @mixin configure-transition($property){
+                transition-property: $property;
+                transition-duration: 0.2s;
+            }
+
+            > .title{
+                margin-left: 0.5rem;
+                font-weight: 600;
+                font-size: 0.905rem;
+                color: gray(0.3);
+                @include configure-transition(color);
+                &.focused{
+                    color: colors.$theme-green;
+                }
+            }
+
+            > .text-input{
+                padding: 0.7rem;
+                @include setProps(padding-left padding-right, 0.8rem);
+                font-size: 0.905;
+                border-radius: 0.6rem;
+                display: block;
+                color: gray(0.3);
+
+                @include configure-transition(border);
+
+                @mixin border-config($color){
+                    border: 0.175rem solid $color;
+                }
+                @include border-config(gray(0.95));
+                &:focus{
+                    @include border-config(colors.$theme-green);
+                }
+                &::placeholder{
+                    color: gray(0.8);
+                }
+            }
+            textarea.text-input{
+                height: 10rem;
+            }
+        }
+        > .submit-button{
+            padding: 1rem;
+            font-size: 1.05rem;
+            font-weight: 500;
+            @include setProps(padding-top padding-bottom, 0.8rem);
+            justify-self: start;
+            background-color: colors.$theme-green;
+            color: white;
+            border-radius: 0.7rem;
+            @include bounceOnHover;
+        }
+    }
+
+    
+
+}
+

@@ -11,12 +11,12 @@ const homeScreenTypes = new Set<ScreenType>([
     ScreenType.products,
 ]);
 
-function NavLink(props: React.PropsWithChildren<{ screenType: ScreenType }>) {
+const NavLink: React.FunctionComponent<React.PropsWithChildren<React.AnchorHTMLAttributes<HTMLAnchorElement> & { screenType: ScreenType }>> = function NavLink({screenType, ...props}) {
 
     const headerFooterContext = useContext(HeaderFooterContainerContext);
     const appContext = useContext(AppContext);
 
-    const matchesCurrentRouteExactly = appContext.currentScreenType === props.screenType;
+    const matchesCurrentRouteExactly = appContext.currentScreenType === screenType;
 
     const isSelected = useMemo(() => {
         if (homeScreenTypes.has(appContext.currentScreenType)){
@@ -29,25 +29,29 @@ function NavLink(props: React.PropsWithChildren<{ screenType: ScreenType }>) {
                     return headerFooterContext.currentHomeScreenSection;
                 }
             })();
-            return homeScreenSection === props.screenType;
+            return homeScreenSection === screenType;
         } else {
             return matchesCurrentRouteExactly;
         }
-    }, [appContext.currentScreenType, headerFooterContext?.currentHomeScreenSection, matchesCurrentRouteExactly, props.screenType]);
+    }, [appContext.currentScreenType, headerFooterContext?.currentHomeScreenSection, matchesCurrentRouteExactly, screenType]);
 
     return <Link
-        onClick={() => {
-            if (matchesCurrentRouteExactly){
+        {...props}
+        onClick={(...args) => {
+            if (matchesCurrentRouteExactly && screenType !== ScreenType.home){
                 GoBackToCurrentHomeScreenSectionNotification.post();
             }
+            props.onClick?.(...args);
         }}
-        to={getRouteForScreenType(props.screenType)}
+        to={getRouteForScreenType(screenType)}
         className={[
             "NavLink",
             ...(isSelected ? ['selected'] : []),
+            ...(props.className ? [props.className] : []),
         ].join(' ')}
+        
     >
-        {getTitleForScreenType(props.screenType)}
+        {getTitleForScreenType(screenType)}
     </Link>
 
 }
