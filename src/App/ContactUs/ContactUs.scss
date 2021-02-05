@@ -163,9 +163,9 @@
                 @include configure-transition(border);
 
                 @mixin border-config($color){
-                    border: 0.175rem solid $color;
+                    border: 0.18rem solid $color;
                 }
-                @include border-config(gray(0.95));
+                @include border-config(gray(0.92));
                 &:focus{
                     @include border-config(colors.$theme-green);
                 }

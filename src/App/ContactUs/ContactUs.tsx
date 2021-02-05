@@ -1,8 +1,46 @@
 
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { contactUsItems } from '../../helpers/Views/Footer/Footer';
 import './ContactUs.scss';
 import EmailSVG from './EmailSVG';
+import { useField, useForm } from 'react-form';
+import { isValidEmail } from '../../helpers/general';
+
+enum FieldType {
+    email = 'email',
+    name = 'name',
+    subject = 'subject',
+    description = 'description',
+}
+
+// interface Fields{
+//     [FieldType.email]: string;
+//     [FieldType.name]: string;
+//     [FieldType.subject]: string;
+//     [FieldType.description]: string;
+// }
+
+// const fieldTypes = new Set<FieldType>([
+//     FieldType.email,
+//     FieldType.name,
+//     FieldType.subject,
+//     FieldType.description,
+// ]);
+
+// function validateFields(fields: Fields): Partial<Fields>{
+//     const result: Partial<Fields> = {};
+//     fieldTypes.forEach(key => {
+//         const value = fields[key];
+//         if (typeof value !== 'string') return;
+//         if (value.length <= 0){
+//             result[key] = 'This field is required';
+//         } else if (key === FieldType.email && isValidEmail(value) === false){
+//             result[key] = 'This email is not valid';
+//         }
+//     });
+//     return result;
+// }
+
 
 
 function ContactUs() {
@@ -26,32 +64,80 @@ function ContactUs() {
                 })}
             </div>
         </div>
-        <div className="fields">
-            <TextField topTitleText="Your email address" placeholder="john.appleseed@example.com" />
-            <TextField topTitleText="Your name" placeholder="How do we address you?"/>
-            <TextField topTitleText="Subject" placeholder="Let us know how we can help you."/>
-            <TextField topTitleText="Full description" placeholder="Please include as much information as possible." isMultiline={true}/>
-            <button className="submit-button">Submit</button>
-        </div>
+        <FormView />
     </div>
 }
 
 export default ContactUs;
 
+
+
+
+const FormView = () => {
+
+    const initialValues = useMemo(() => ({
+        [FieldType.email]: '',
+        [FieldType.name]: '',
+        [FieldType.subject]: '',
+        [FieldType.description]: '',
+    }), []);
+
+    const { Form, meta } = useForm({
+        defaultValues: initialValues,
+        onSubmit: async (values, instance) => {
+
+            await new Promise<undefined>(resolve => {
+                setTimeout(() => {
+                    resolve(undefined);
+                }, 2000);
+            });
+
+        },
+        validate: (values) => {
+            for (const key in values){
+                const value = values[key];
+                if (value.length <= 1){
+                    return `The ${key} field is required`;
+                } else if (value === FieldType.email && (isValidEmail(FieldType.email) === false)){
+                    return 'The email you have entered is not valid.';
+                } else {
+                    return false;
+                }
+            }
+        }
+    });
+
+    console.log(meta.error);
+
+    return <Form className="fields">
+        <TextField topTitleText="Your email address" placeholder="john.appleseed@example.com" fieldName={FieldType.email} />
+        <TextField topTitleText="Your name" placeholder="How do we address you?" fieldName={FieldType.name} />
+        <TextField topTitleText="Subject" placeholder="Let us know how we can help you." fieldName={FieldType.subject} />
+        <TextField topTitleText="Full description" placeholder="Please include as much information as possible." isMultiline={true} fieldName={FieldType.description} />
+        <button type="submit" className="submit-button">Submit</button>
+    </Form>
+};
+
+
+
+
+
 interface TextFieldProps {
     isMultiline?: boolean;
     topTitleText?: string;
-    value?: string;
     placeholder?: string;
-    onValueChange?: (value: string) => void;
+    fieldName: string;
 }
 
 const TextField = (props: TextFieldProps) => {
 
     const [isFocused, setIsFocused] = useState(false);
+    const { getInputProps } = useField(props.fieldName, {defaultIsTouched: false});
+
+    const inputProps = getInputProps();
 
     return <div className="TextField">
-        {props.topTitleText != null && <div 
+        {props.topTitleText != null && <div
             className={[
                 'title',
                 ...(isFocused ? ['focused'] : [])
@@ -61,12 +147,13 @@ const TextField = (props: TextFieldProps) => {
         </div>}
         {React.createElement(props.isMultiline ? 'textarea' : 'input', {
             className: 'text-input',
-            value: props.value,
             placeholder: props.placeholder ?? 'Type here...',
+            ...inputProps,
+            required: true,
             onFocus: () => setIsFocused(true),
-            onBlur: () => setIsFocused(false),
-            onChange: (x: any) => {
-                props.onValueChange?.(x.target.value as string);
+            onBlur: (args: any) => {
+                setIsFocused(false);
+                inputProps.onBlur(args);
             },
         })}
     </div>
