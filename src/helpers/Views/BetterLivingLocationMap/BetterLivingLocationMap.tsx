@@ -1,11 +1,10 @@
 
 import './BetterLivingLocationMap.scss';
-import React, { useRef, useEffect, useMemo } from 'react';
-import mapboxgl from 'mapbox-gl';
+import { useRef, useEffect, useMemo } from 'react';
 import backToCenterIcon from './back-to-center-icon';
 import { Optional } from '../../general';
-mapboxgl.accessToken = 'pk.eyJ1IjoicGF0cmlja2hhbm5hMjQyIiwiYSI6ImNqcnh2eWVrczBydGo0OWx2dDUyYjhvNnMifQ.SGbGDXppFmFkdUnBxIyoqA';
 
+window.mapboxgl.accessToken = 'pk.eyJ1IjoicGF0cmlja2hhbm5hMjQyIiwiYSI6ImNqcnh2eWVrczBydGo0OWx2dDUyYjhvNnMifQ.SGbGDXppFmFkdUnBxIyoqA';
 
 
 export default function BetterLivingLocationMap(){
@@ -28,18 +27,15 @@ export default function BetterLivingLocationMap(){
         let observer = new IntersectionObserver(intersectionOccured);
 
         function displayMapOnScreen() {
-            
-            const map = new mapboxgl.Map({
+            const map = new window.mapboxgl.Map({
                 container: mapDivID,
                 style: 'mapbox://styles/patrickhanna242/ckjkp1aqh05851ao9nc42wvtr',
                 center: centerCoordinate,
                 zoom: defaultZoom,
             });
             mapBoxMap.current = map;
-            const marker = new mapboxgl.Marker({ color: "#27C478" });
-            
+            const marker = new window.mapboxgl.Marker({ color: "#27C478" });
             marker.setLngLat(centerCoordinate).addTo(map);
-            
         }
 
         function intersectionOccured(entries: IntersectionObserverEntry[]) {

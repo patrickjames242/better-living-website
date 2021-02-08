@@ -1,0 +1,196 @@
+
+@use 'helpers/colors';
+@use 'helpers/general' as *;
+
+.History{
+
+    max-width: 50rem;
+    margin-top: 2rem;
+    @include setProps(margin-left margin-right, auto);
+
+    @mixin respondToExtraSmallMaxSize{
+        @media(max-width: 40rem){
+            @content;
+        }
+    }
+
+    @include respondToSmallMaxSize{
+        margin-top: 1rem;
+    }
+
+    > .title-view{
+
+        @include setProps(margin-left margin-right, auto);
+        margin-bottom: 3rem;
+        display: grid;
+        max-width: 50rem;
+        justify-content: center;
+        justify-items: center;
+
+        > .subtitle{
+            font-size: 1rem;
+            text-transform: uppercase;
+            color: colors.$theme-green;
+            font-weight: 400;
+            text-align: center;
+        }
+        > .title{
+            font-size: 2.7rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        @include respondToSmallMaxSize{
+            margin-bottom: 1.5rem;
+            max-width: 30rem;
+            > .subtitle{
+                font-size: 0.95rem;
+            }
+            > .title{
+                font-size: 2rem;
+            }
+        }
+    }
+    
+    > .text-holder{
+        margin-bottom: 1.5rem;
+
+        > p{
+            color: gray(0.4);        
+            font-size: 1.2rem;
+            font-weight: 300;
+            line-height: 1.9;
+            
+            @include respondToSmallMaxSize{
+                font-size: 1.1rem;
+                @include respondToExtraSmallMaxSize{
+                    font-size: 1.05rem;
+                }
+            }
+
+            
+        }
+
+        > * + *{
+            margin-top: 1.5em;
+        }
+        
+        > .ImageBox{
+            > div{
+                padding-top: 50%;
+                position: relative;
+                border-radius: 1rem;
+                overflow: hidden;
+
+                @include respondToSmallMaxSize{
+                    padding-top: 57%;
+                }
+
+                > img{
+                    position: absolute;
+                    @include setProps(left top, 0);
+                    @include setProps(width height, 100%);
+                    object-fit: cover;
+                }
+            }
+
+            @include respondToSmallMaxSize{
+                @include setProps(margin-left margin-right, calc(var(--screen-side-insets) * -1));
+                > div{
+                    border-radius: 0;
+                }
+            }
+        }
+
+        > .MissionBoxes{
+            
+            display: grid;
+            gap: 1rem;
+            justify-content: center;
+            @include setProps(margin-top margin-bottom, 2.2rem);
+            
+            > .MissionBox{
+
+                background-color: rgba(colors.$theme-green, 0.1);
+                display: grid;
+                border-radius: 1rem;
+                padding: 1.5rem;
+                gap: 1rem;
+                max-width: 35rem;
+                
+                > .title-container{
+                    display: grid;
+                    grid-template-columns: auto 1fr;
+                    align-items: center;
+                    gap: 1.15rem;
+                    > svg{
+                        @include setProps(height width, 2rem);
+                        fill: colors.$theme-green;
+                    }
+                                            
+                    > .title{
+                        font-size: 1.5rem;
+                        font-weight: 500;
+                        color: colors.$theme-green;
+                    }
+                }
+
+                > .description{
+                    font-size: 1rem;
+                    color: gray(0.55);
+                    font-weight: 300;
+                    line-height: 1.5;
+                }
+
+            }
+        }
+        
+    }
+
+    > .line{
+        height: 1px;
+        background-color: gray(0.95);
+    }
+
+    > .author-box{
+        margin-top: 2rem;
+        margin-bottom: 3rem;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        gap: 1.6rem;
+
+        > img{
+            border-radius: 10000000rem;
+            box-shadow: 0 0 2rem rgba(black, 0.2);
+            @include setProps(height width, 4.5rem);
+        }
+
+        > .text{
+            > .written-by{
+                font-size: 0.8rem;
+                color: gray(0.7);
+            }
+            > .name{
+                font-size: 1.2rem;
+                font-weight: bold;
+            }
+            > .subtitle{
+                font-size: 1rem;
+                color: gray(0.7);
+            }
+
+            @include respondToExtraSmallMaxSize{
+                > .name{
+                    font-size: 1.1rem;
+                }
+                > .subtitle{
+                    font-size: 0.9rem;
+                }
+            }
+        }
+
+    }
+
+    
+}

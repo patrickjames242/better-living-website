@@ -8,6 +8,7 @@ import HeaderFooterContainer from '../helpers/Views/HeaderFooterContainer/Header
 import { AppContext, AppContextValue, getRouteForScreenType, ScreenType } from './helpers';
 import { useUpdateLayoutEffect } from '../helpers/general';
 import ContactUs from './ContactUs/ContactUs';
+import History from './History/History';
 
 function App() {
 	return <Router>
@@ -64,9 +65,7 @@ function _App() {
 						case ScreenType.contactUs:
 							return <ContactUs/>
 						case ScreenType.history:
-							return <div style={{ backgroundColor: 'blue', padding: 100 }}>
-								History!
-								</div>;
+							return <History/>
 						default:
 							return <HomePage />
 					}

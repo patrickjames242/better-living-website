@@ -48,8 +48,7 @@
                 > .item{
                     color: $subtitle-color;
 
-                    word-break: break-word;
-                    word-wrap: break-word; // for microsoft edge on windows
+                    @include break-long-words;
 
                     $transition-duration: 0.2s;
                     transition-property: color;

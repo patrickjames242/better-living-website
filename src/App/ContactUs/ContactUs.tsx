@@ -1,46 +1,10 @@
 
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { contactUsItems } from '../../helpers/Views/Footer/Footer';
+import CheckmarkSVG from '../HomePage/FoodAndSupplements/CheckmarkSVG';
 import './ContactUs.scss';
 import EmailSVG from './EmailSVG';
-import { useField, useForm } from 'react-form';
-import { isValidEmail } from '../../helpers/general';
-
-enum FieldType {
-    email = 'email',
-    name = 'name',
-    subject = 'subject',
-    description = 'description',
-}
-
-// interface Fields{
-//     [FieldType.email]: string;
-//     [FieldType.name]: string;
-//     [FieldType.subject]: string;
-//     [FieldType.description]: string;
-// }
-
-// const fieldTypes = new Set<FieldType>([
-//     FieldType.email,
-//     FieldType.name,
-//     FieldType.subject,
-//     FieldType.description,
-// ]);
-
-// function validateFields(fields: Fields): Partial<Fields>{
-//     const result: Partial<Fields> = {};
-//     fieldTypes.forEach(key => {
-//         const value = fields[key];
-//         if (typeof value !== 'string') return;
-//         if (value.length <= 0){
-//             result[key] = 'This field is required';
-//         } else if (key === FieldType.email && isValidEmail(value) === false){
-//             result[key] = 'This email is not valid';
-//         }
-//     });
-//     return result;
-// }
-
+import ErrorSVG from './ErrorSVG';
 
 
 function ContactUs() {
@@ -67,57 +31,85 @@ function ContactUs() {
         <FormView />
     </div>
 }
-
 export default ContactUs;
 
-
+async function sendMessage(props: {
+    email: string,
+    name: string,
+    subject: string,
+    description: string,
+}) {
+    const result = await fetch('https://better-living-backend.herokuapp.com/send-inquiry/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            email: props.email,
+            name: props.name,
+            subject: props.subject,
+            description: props.description,
+        }),
+    });
+    const json = await result.json();
+    if (json.isSuccess === false) {
+        throw new Error(json.errorMessage);
+    }
+}
 
 
 const FormView = () => {
 
-    const initialValues = useMemo(() => ({
-        [FieldType.email]: '',
-        [FieldType.name]: '',
-        [FieldType.subject]: '',
-        [FieldType.description]: '',
-    }), []);
+    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
+    const [subject, setSubject] = useState('');
+    const [description, setDescription] = useState('');
 
-    const { Form, meta } = useForm({
-        defaultValues: initialValues,
-        onSubmit: async (values, instance) => {
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-            await new Promise<undefined>(resolve => {
-                setTimeout(() => {
-                    resolve(undefined);
-                }, 2000);
-            });
+    type Result = { isSuccess: true } | { isSuccess: false, errorMessage: string } | null;
 
-        },
-        validate: (values) => {
-            for (const key in values){
-                const value = values[key];
-                if (value.length <= 1){
-                    return `The ${key} field is required`;
-                } else if (value === FieldType.email && (isValidEmail(FieldType.email) === false)){
-                    return 'The email you have entered is not valid.';
-                } else {
-                    return false;
-                }
-            }
-        }
-    });
+    const [fetchResult, setFetchResult] = useState<Result>(null);
 
-    console.log(meta.error);
+    const onSubmit = useCallback((event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        setIsSubmitting(true);
+        setFetchResult(null);
+        sendMessage({
+            email: email.trim(),
+            name: name.trim(),
+            subject: subject.trim(),
+            description: description.trim(),
+        }).then(() => {
+            setFetchResult({ isSuccess: true })
+        }).catch(error => {
+            setFetchResult({ isSuccess: false, errorMessage: error.message });
+        }).finally(() => {
+            setIsSubmitting(false);
+        });
+    }, [description, email, name, subject]);
 
-    return <Form className="fields">
-        <TextField topTitleText="Your email address" placeholder="john.appleseed@example.com" fieldName={FieldType.email} />
-        <TextField topTitleText="Your name" placeholder="How do we address you?" fieldName={FieldType.name} />
-        <TextField topTitleText="Subject" placeholder="Let us know how we can help you." fieldName={FieldType.subject} />
-        <TextField topTitleText="Full description" placeholder="Please include as much information as possible." isMultiline={true} fieldName={FieldType.description} />
-        <button type="submit" className="submit-button">Submit</button>
-    </Form>
+    return <form className="fields" onSubmit={onSubmit}>
+        <TextField topTitleText="Your email address" placeholder="john.appleseed@example.com" value={email} onValueChange={setEmail} />
+        <TextField topTitleText="Your name" placeholder="How do we address you?" value={name} onValueChange={setName} />
+        <TextField topTitleText="Subject" placeholder="Let us know how we can help you." value={subject} onValueChange={setSubject} />
+        <TextField topTitleText="Full description" placeholder="Please include as much information as possible." isMultiline={true} value={description} onValueChange={setDescription} />
+        {fetchResult != null && <div className={[
+            'error-or-success-message',
+            fetchResult.isSuccess ? 'success' : 'failure',
+        ].join(' ')}>
+            {fetchResult.isSuccess ? <CheckmarkSVG/> : <ErrorSVG/>}
+            <div className="text">
+                {fetchResult.isSuccess ? 'Success! Your message was sent!' : fetchResult.errorMessage}
+            </div>
+        </div>}
+        <button className={[
+            "submit-button",
+            ...(isSubmitting ? ['disabled'] : []),
+        ].join(' ')}>{isSubmitting ? 'Loading...' : 'Submit'}</button>
+    </form>
+
 };
-
 
 
 
@@ -126,15 +118,13 @@ interface TextFieldProps {
     isMultiline?: boolean;
     topTitleText?: string;
     placeholder?: string;
-    fieldName: string;
+    value: string;
+    onValueChange: (newValue: string) => void;
 }
 
 const TextField = (props: TextFieldProps) => {
 
     const [isFocused, setIsFocused] = useState(false);
-    const { getInputProps } = useField(props.fieldName, {defaultIsTouched: false});
-
-    const inputProps = getInputProps();
 
     return <div className="TextField">
         {props.topTitleText != null && <div
@@ -148,12 +138,13 @@ const TextField = (props: TextFieldProps) => {
         {React.createElement(props.isMultiline ? 'textarea' : 'input', {
             className: 'text-input',
             placeholder: props.placeholder ?? 'Type here...',
-            ...inputProps,
             required: true,
+            onChange: (args: any) => {
+                props.onValueChange(args.target.value);
+            },
             onFocus: () => setIsFocused(true),
-            onBlur: (args: any) => {
+            onBlur: () => {
                 setIsFocused(false);
-                inputProps.onBlur(args);
             },
         })}
     </div>

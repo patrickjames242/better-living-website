@@ -119,6 +119,7 @@
                 > .text{
                     white-space: pre-line;
                     font-size: 1rem;
+                    @include break-long-words;
                 }
             }
             
@@ -177,6 +178,33 @@
                 height: 10rem;
             }
         }
+
+        > .error-or-success-message{
+            margin-left: 0.5rem;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: center;
+            gap: 0.7rem;
+
+            --color: black;
+            &.success{
+                --color: #{colors.$theme-green};
+            }
+            &.failure{
+                --color: red;
+            }
+            > svg{
+                @include setProps(height width, 1.5rem);
+                fill: var(--color);
+            }
+            > .text{
+                color: var(--color);
+                font-size: 0.9rem;
+                @include break-long-words;
+            }
+
+        }
+
         > .submit-button{
             padding: 1rem;
             font-size: 1.05rem;
@@ -187,6 +215,11 @@
             color: white;
             border-radius: 0.7rem;
             @include bounceOnHover;
+
+            &.disabled{
+                pointer-events: none;
+                opacity: 0.5;
+            }
         }
     }
 
