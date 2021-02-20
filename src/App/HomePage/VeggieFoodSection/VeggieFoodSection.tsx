@@ -10,10 +10,9 @@ import './VeggieFoodSection.scss';
 
 const VeggieFoodSection: React.ForwardRefRenderFunction<HTMLDivElement, {}> = function VeggieFoodSection(props, ref){
     return <div ref={ref} className="VeggieFoodSection">
-        <div className="background-view"/>
         <SectionTitleView
             subtitle="Check Out Our Food"
-            title={"Serving Vegetarian Breakfast & Lunch"}
+            title={"We Serve Vegetarian Breakfast & Lunch"}
             description={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut libero unde doloribus dicta. Delectus neque reiciendis doloribus illum nostrum illo, itaque sed alias. Minima neque voluptate optio, accusantium quidem placeat error unde fugit?"}
         />
         <a href={BETTER_LIVING_APP_URL + '/?initialTabSelection=todaysMenu'} target="_blank" rel="noreferrer" className="see-todays-menu">

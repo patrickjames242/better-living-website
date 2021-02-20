@@ -21,7 +21,7 @@ export const contactUsItems: ContactUsItem[] = [
         href: 'mailto:info@betterlivingnassau.com'
     },
     {
-        title: '(242) 323-5473',
+        title: '323-5473 or 328-5658',
         iconSVG: PhoneSVG,
         href: 'tel:2423235473'
     },

@@ -10,6 +10,7 @@ import { AppContext, GoBackToCurrentHomeScreenSectionNotification, HomeScreenSec
 import { filterString, isDigit, Optional } from '../../helpers/general';
 import { HeaderFooterContainerContext } from '../../helpers/Views/HeaderFooterContainer/helpers';
 import { useSpring } from 'react-spring';
+import Consults from './Consults/Consults';
 
 const getCurrentNavBarHeight = () => {
     const navBarHeightRems = Number(filterString(getComputedStyle(document.body).getPropertyValue('--nav-bar-height'), char => isDigit(char)));
@@ -22,9 +23,9 @@ function HomePage() {
     const headerFooterContext = useContext(HeaderFooterContainerContext);
     const veggieFoodSection = useRef<HTMLDivElement>(null);
     const productsSection = useRef<HTMLDivElement>(null);
+    const consultsSection = useRef<HTMLDivElement>(null);
 
     const appContext = useContext(AppContext);
-
 
     const getScrollTopValueForElement = useCallback((element: HTMLDivElement) => {
 
@@ -65,6 +66,8 @@ function HomePage() {
             switch (appContext.currentScreenType) {
                 case ScreenType.food:
                     return getScrollTopValueForElement(veggieFoodSection.current!);
+                case ScreenType.consults:
+                    return getScrollTopValueForElement(consultsSection.current!);
                 case ScreenType.products:
                     return getScrollTopValueForElement(productsSection.current!);
                 case ScreenType.home:
@@ -101,6 +104,10 @@ function HomePage() {
             {
                 element: veggieFoodSection.current!,
                 section: ScreenType.food as HomeScreenSection,
+            },
+            {
+                element: consultsSection.current!,
+                section: ScreenType.consults as HomeScreenSection,
             },
             {
                 element: productsSection.current!,
@@ -145,6 +152,7 @@ function HomePage() {
     return <div className="HomePage">
         <IntroSection />
         <VeggieFoodSection ref={veggieFoodSection} />
+        <Consults ref={consultsSection}/>
         <FoodAndSupplementsSection ref={productsSection} />
         <AppAndMapSection />
         <HealthTipsSection />

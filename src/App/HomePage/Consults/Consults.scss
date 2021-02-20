@@ -1,0 +1,136 @@
+
+@use 'helpers/colors';
+@use 'helpers/general' as *;
+
+.Consults{
+
+    position: relative;
+    @include setProps(padding-top padding-bottom, 4rem);
+
+    @media(max-width: 59.38rem){
+        padding-top: 2.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .TitleSubtitleContainer{
+
+        display: grid;
+        gap: 1rem;
+
+        > .line{
+            height: 0.4rem;
+            background-color: colors.$theme-green;
+            border-radius: 1000000000rem;
+            width: 4rem;
+        }
+        
+        > .title{
+            font-weight: bold;
+            font-size: 1.6rem;
+        }
+        
+        > .description{
+            font-size: 1rem;
+            color: gray(0.6);
+        }
+
+        @include respondToSmallMaxSize{
+            text-align: center;
+            justify-items: center;
+            > .title{
+                font-size: 1.3rem;
+                font-weight: bold;
+            }
+        }
+    }
+
+    > .background-view{
+        z-index: -1;
+        width: 100vw;
+        position: absolute;
+        height: 100%;
+        top: 0; left: 50%;
+        transform: translateX(-50%);
+        background-color: colors.$gray-background;
+    }
+
+    > .corporate-wellness-container{
+
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        align-items: center;
+        gap: 3.5rem;
+        max-width: 60rem;
+        margin-top: 2rem;
+
+        @include setProps(padding-top padding-bottom, 2rem);
+        @include setProps(margin-left margin-right, auto);
+
+        
+
+        > .left-section{
+
+            margin-right: -12%;
+            margin-bottom: -6%;
+
+            position: relative;
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
+            
+            > .ImageContainer{
+                > div {
+                    padding-top: 68%;
+                    position: relative;
+                    > div{
+                        position: absolute;
+                        @include setProps(top left bottom right, 0);
+                        box-shadow: 0 0 1rem rgba(black, 0.3);
+                        overflow: hidden;
+                        position: absolute;
+                        border-radius: 0.5rem;
+                        overflow: hidden;
+    
+                        > img{
+                            object-fit: cover;
+                            @include setProps(left top, 0);
+                            @include setProps(width height, 100%);
+                            
+                            position: absolute;
+                            @include setProps(left right bottom top, 0);
+                        }
+                    }
+                }
+            }
+
+            > div:nth-child(1){
+
+            }
+            > div:nth-child(2) > div > div{
+                @include setProps(right top, 23%);
+            }
+            > div:nth-child(3) > div > div{
+                @include setProps(left bottom, 15%);
+            }
+            > div:nth-child(4) > div > div{
+                @include setProps(right bottom, 35%);
+            }
+        }
+
+        @include respondToSmallMaxSize{
+            
+            grid-template-columns: auto;
+            max-width: 30rem;
+
+            > .left-section{
+                max-width: 25rem;
+                justify-self: center;
+                width: 100%;
+                grid-row: 2;
+            }
+        }
+
+    }
+
+}

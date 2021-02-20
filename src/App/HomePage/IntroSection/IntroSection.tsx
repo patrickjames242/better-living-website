@@ -11,7 +11,7 @@ function IntroSection() {
     return <div className="IntroSection">
         <div className="left-side">
             <div className="top-subtitle">#1 Bahamian Health Store</div>
-            <div className="title">Every Spending Counts. Invest it.</div>
+            <div className="title">Your Health Matters. We Can Help.</div>
             <div className="description">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto eveniet odit blanditiis, beatae eum inventore reiciendis illo laborum dolorem. Earum, exercitationem expedita iusto pariatur nobis consequatur?
             </div>
@@ -36,7 +36,7 @@ function IntroSection() {
                     </div>
                 )}
             </div>
-            <a href="/" className="learn-more-button">
+            <a href="/" className="contact-us-button">
                 Learn More
             </a>
         </div>

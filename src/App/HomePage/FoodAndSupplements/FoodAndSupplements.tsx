@@ -34,7 +34,7 @@ const FoodAndSupplementsSection: React.ForwardRefRenderFunction<HTMLDivElement, 
 
     return <div ref={ref} className="FoodAndSupplementsSection">
         <SectionTitleView
-            subtitle="Check Out Our Food"
+            subtitle="Check Out Our Products"
             title={"We Sell Natural Foods & Supplements"}
             description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea explicabo voluptate nihil iusto totam voluptates eos! Numquam, explicabo unde rem, porro earum amet placeat, qui corrupti alias repudiandae adipisci autem."
         />

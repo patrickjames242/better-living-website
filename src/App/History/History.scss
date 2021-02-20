@@ -23,7 +23,7 @@
         @include setProps(margin-left margin-right, auto);
         margin-bottom: 3rem;
         display: grid;
-        max-width: 50rem;
+        max-width: 45rem;
         justify-content: center;
         justify-items: center;
 
@@ -56,7 +56,8 @@
         margin-bottom: 1.5rem;
 
         > p{
-            color: gray(0.4);        
+
+            color: gray(0.4);
             font-size: 1.2rem;
             font-weight: 300;
             line-height: 1.9;
@@ -68,7 +69,6 @@
                 }
             }
 
-            
         }
 
         > * + *{
@@ -194,3 +194,5 @@
 
     
 }
+
+
