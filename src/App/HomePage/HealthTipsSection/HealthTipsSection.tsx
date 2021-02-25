@@ -64,7 +64,7 @@ function HealthTipsSection() {
             <div className="content">
                 <div className="title-cell">
                     <div className="title">Check Out Our Health Tips</div>
-                    <div className="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo repellendus accusamus!</div>
+                    <div className="description">We try to release an informative health tip once per week. Check them out on our app.</div>
                     <a href={BETTER_LIVING_APP_URL + '/?initialTabSelection=healthTips'} target="_blank" rel="noreferrer" className="see-all-button">
                         See All Tips
                     </a>

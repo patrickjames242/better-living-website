@@ -48,7 +48,7 @@ const Consults: React.ForwardRefRenderFunction<HTMLDivElement, {}> = function Co
                 <TitleSubtitleContainer title="Coporate, Employee, & Group Wellness Seminars & Programs" description="Employee wellness seminars are very effective in raising the morale of your staff, decreasing absenteeism and the amount of National Insurance claims." />
             </div>
             <div className="personal-wellness-container">
-                <TitleSubtitleContainer title="Dietitian's Consultation Office For Lifestyle Plans" description="Employee wellness seminars are very effective in raising the morale of your staff, decreasing absenteeism and the amount of National Insurance claims." />
+                <TitleSubtitleContainer title="Dietitian's Consultation Office For Lifestyle Plans" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem eum aut quas eligendi quae illum magni maxime ad fugiat sunt!" />
                 <div className="column">
                     {[
                         'Vegetarian Lifestyle',

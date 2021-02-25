@@ -31,7 +31,7 @@ export const contactUsItems: ContactUsItem[] = [
         href: 'https://www.facebook.com/Better-Living-Health-Center-Deli-1477766185772763'
     },
     {
-        title: 'Balfour Ave. & Palm Beach St.\n7:30am - 5pm, Mon - Fri',
+        title: 'Balfour Ave. & Palm Beach St.\n7:30am - 4pm, Mon - Fri',
         iconSVG: LocationSVG,
         href: '',
     },

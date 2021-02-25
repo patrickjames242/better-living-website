@@ -27,7 +27,7 @@ function AppAndMapSection(props: AppAndMapSectionProps) {
             </div>
             <div className="text-container right-side">
                 <div className="title">Download Our Mobile App Today!</div>
-                <div className="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, maxime esse eaque tempore culpa placeat minus doloremque voluptatibus a! Porro.</div>
+                <div className="description">Use our mobile app on iOS, Android, and the web to browse our weekly health tips, order food from us online, and submit questions to us. Your Better Living experience just got even better!</div>
                 <div className="app-store-buttons">
                     <a href="https://apps.apple.com/us/app/better-living-health-center/id1541047557" target="_blank" rel="noreferrer">
                         <img src={appStoreBadge} alt="" />
@@ -44,7 +44,7 @@ function AppAndMapSection(props: AppAndMapSectionProps) {
         <div className="map-section">
             <div className="text-container">
                 <div className="title">Come And Visit Us In Person!</div>
-                <div className="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, maxime esse eaque tempore.</div>
+                <div className="description">We are located at the intersection of Balfour Avenue and Palm Beach Street. Pay us a visit and our friendly staff will give you just what you need!</div>
             </div>
             <BetterLivingLocationMap />
         </div>
@@ -52,5 +52,4 @@ function AppAndMapSection(props: AppAndMapSectionProps) {
 }
 
 export default AppAndMapSection;
-
 

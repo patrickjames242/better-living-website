@@ -11,7 +11,7 @@ function ContactUs() {
     return <div className="ContactUs">
         <div className="title-box">
             <div className="title">Let's Talk</div>
-            <div className="subtitle">To request a quote or want to meet up for coffee, contact us directly or fill out the form and we will get back to you promptly.</div>
+            <div className="subtitle">If you have a question or comment for us, please fill out the form below and one of our staff will get back to you promptly.</div>
         </div>
         <div className="right-column">
             <div className="illustration">

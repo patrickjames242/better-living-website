@@ -5,6 +5,9 @@ import SectionTitleView from '../SectionTitleView/SectionTitleView';
 import BurgerSVG from './icons/BurgerSVG';
 import SaladSVG from './icons/SaladSVG';
 import SoupSVG from './icons/SoupSVG';
+import LunchSVG from './LunchSVG';
+import BreakfastSVG from './BreakfastSVG';
+
 import './VeggieFoodSection.scss';
 
 
@@ -37,13 +40,13 @@ const VeggieFoodSection: React.ForwardRefRenderFunction<HTMLDivElement, {}> = fu
                     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti aliquam, consequuntur inventore quasi perferendis mollitia assumenda?',
                 },
                 {
-                    svg: BurgerSVG,
-                    title: 'Scrumptious Vegetarian Whoppers',
+                    svg: LunchSVG,
+                    title: 'A Daily Lunch Menu',
                     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti aliquam, consequuntur inventore quasi perferendis mollitia assumenda?',
                 },
                 {
-                    svg: BurgerSVG,
-                    title: 'Scrumptious Vegetarian Whoppers',
+                    svg: BreakfastSVG,
+                    title: 'A Daily Breakfast Menu',
                     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti aliquam, consequuntur inventore quasi perferendis mollitia assumenda?',
                 },
                 {
