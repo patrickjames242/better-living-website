@@ -179,7 +179,6 @@
                 font-size: 1rem;
                 color: gray(0.7);
             }
-
             @include respondToExtraSmallMaxSize{
                 > .name{
                     font-size: 1.1rem;

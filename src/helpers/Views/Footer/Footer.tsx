@@ -59,6 +59,10 @@ const additionalLinks: AdditionalLink[] = [
         title: 'Nedley Health',
         href: 'https://nedleyhealth.com',
     },
+    {
+        title: 'Amazing Facts',
+        href: 'https://amazingfacts.org',
+    },
 ]
 
 function Footer() {
@@ -67,8 +71,8 @@ function Footer() {
         <div className="content">
             <div className="top-section">
                 <div className="left-text-container">
-                    <div className="title">Lorem ipsum dolor sit amet</div>
-                    <div className="subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit. In nihil, repellendus nemo explicabo.</div>
+                    <div className="title">Better Living is here for you!</div>
+                    <div className="subtitle">Feel free to call us, email us, or pay us a visit. We are always excited to see and hear from you.</div>
                 </div>
                 <div className="quick-links">
                     <div className="links-title">Quick Links</div>

@@ -13,7 +13,8 @@ function IntroSection() {
             <div className="top-subtitle">#1 Bahamian Health Store</div>
             <div className="title">Your Health Matters. We Can Help.</div>
             <div className="description">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto eveniet odit blanditiis, beatae eum inventore reiciendis illo laborum dolorem. Earum, exercitationem expedita iusto pariatur nobis consequatur?
+                {/* Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto eveniet odit blanditiis, beatae eum inventore reiciendis illo laborum dolorem. Earum, exercitationem expedita iusto pariatur nobis consequatur? */}
+                Better Living Health Food Store & Deli is the island’s best in organic and health food supplements, vegetarian cuisine, and health and wellness consultations. Our mission is to provide quality service that empowers and motivates people toward total wellness.
             </div>
             <div className="services-container">
                 {[

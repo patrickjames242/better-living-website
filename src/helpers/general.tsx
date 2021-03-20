@@ -14,7 +14,7 @@ export type Writeable<T> = { -readonly [P in keyof T]: T[P] };
 export type PartialBy<T, Keys extends keyof T> = Omit<T, Keys> & Partial<Pick<T, Keys>>
 
 export const NASSAU_TIME_ZONE = 'America/Nassau';
-export const BETTER_LIVING_APP_URL = 'https://betterlivingnassau.com';
+export const BETTER_LIVING_APP_URL = 'https://app.betterlivingnassau.com';
 // export const BETTER_LIVING_APP_URL = 'http://localhost:19006';
 
 export function getNumbersList(first: number, last: number): number[] {
