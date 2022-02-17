@@ -35,7 +35,7 @@ const Consults: React.ForwardRefRenderFunction<HTMLDivElement, {}> = function Co
         <SectionTitleView
             subtitle="Let Us Help You"
             title={"We Offer Consults in Health & Wellness"}
-            description={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut libero unde doloribus dicta. Delectus neque reiciendis doloribus illum nostrum illo, itaque sed alias. Minima neque voluptate optio, accusantium quidem placeat error unde fugit?"}
+            description="We are the islands best consultants in health and wellness. The center has a registered dietitian and provides individualized or group wellness plans for major chronic diseases such as diabetes, hypertension and cancer. We also provide corporate wellness and employee wellness programs."
         />
         <div className="content">
             <div className="corporate-wellness-container">
@@ -48,7 +48,7 @@ const Consults: React.ForwardRefRenderFunction<HTMLDivElement, {}> = function Co
                 <TitleSubtitleContainer title="Coporate, Employee, & Group Wellness Seminars & Programs" description="Employee wellness seminars are very effective in raising the morale of your staff, decreasing absenteeism and the amount of National Insurance claims." />
             </div>
             <div className="personal-wellness-container">
-                <TitleSubtitleContainer title="Dietitian's Consultation Office For Lifestyle Plans" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem eum aut quas eligendi quae illum magni maxime ad fugiat sunt!" />
+                <TitleSubtitleContainer title="Dietitian's Consultation Office For Lifestyle Plans" description="The center's registered dietitian can provide you with an individualized wellness plan to keep you in tip top shape while mitigating a wide variety of health issues." />
                 <div className="column">
                     {[
                         'Vegetarian Lifestyle',

@@ -117,6 +117,10 @@
             margin-top: 1.8rem;
             @include setProps(padding-top padding-bottom, 1.5rem);
             text-align: center;
+
+             a{
+                text-decoration: underline;
+            }
         }
 
         @media(max-width: 70rem){

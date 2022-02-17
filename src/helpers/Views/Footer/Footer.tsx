@@ -105,7 +105,7 @@ function Footer() {
                 </div>
             </div>
             <div className="bottom-section">
-                <div>{"© Better Living Health Center & Deli. Made With ♥ by Patrick Hanna."}</div>
+                <div>{"©"} Better Living Health Center & Deli. Made With ♥ by <a href="https://patrickhanna.dev" target="_blank" rel="noreferrer">Patrick Hanna</a>.</div>
             </div>
         </div>
     </footer>

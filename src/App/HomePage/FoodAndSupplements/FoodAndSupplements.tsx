@@ -36,7 +36,7 @@ const FoodAndSupplementsSection: React.ForwardRefRenderFunction<HTMLDivElement, 
         <SectionTitleView
             subtitle="Check Out Our Products"
             title={"We Sell Natural Foods & Supplements"}
-            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea explicabo voluptate nihil iusto totam voluptates eos! Numquam, explicabo unde rem, porro earum amet placeat, qui corrupti alias repudiandae adipisci autem."
+            description="We have available for sale a wide selection of vegetarian and vegan products ranging from nuts, grains, and sauces, to organic supplements for a plethora of ailments."
         />
         <div className="list-items">
             <div className="column">
