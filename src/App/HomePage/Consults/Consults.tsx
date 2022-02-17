@@ -35,7 +35,7 @@ const Consults: React.ForwardRefRenderFunction<HTMLDivElement, {}> = function Co
         <SectionTitleView
             subtitle="Let Us Help You"
             title={"We Offer Consults in Health & Wellness"}
-            description="We are the islands best consultants in health and wellness. The center has a registered dietitian and provides individualized or group wellness plans for major chronic diseases such as diabetes, hypertension and cancer. We also provide corporate wellness and employee wellness programs."
+            description="We are the island's best consultants in health and wellness. The center has a registered dietitian and provides individualized or group wellness plans for major chronic diseases such as diabetes, hypertension and cancer. We also provide corporate wellness and employee wellness programs."
         />
         <div className="content">
             <div className="corporate-wellness-container">
