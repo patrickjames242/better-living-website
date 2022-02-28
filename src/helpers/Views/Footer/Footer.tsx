@@ -15,26 +15,26 @@ interface ContactUsItem {
 }
 
 export const contactUsItems: ContactUsItem[] = [
-    {
-        title: 'info@betterlivingnassau.com',
-        iconSVG: MailSVG,
-        href: 'mailto:info@betterlivingnassau.com'
-    },
-    {
-        title: '323-5473 or 328-5658',
-        iconSVG: PhoneSVG,
-        href: 'tel:2423235473'
-    },
-    {
-        title: 'Facebook',
-        iconSVG: FacebookSVG,
-        href: 'https://www.facebook.com/Better-Living-Health-Center-Deli-1477766185772763'
-    },
-    {
-        title: 'Balfour Ave. & Palm Beach St.\n7:30am - 4pm, Mon - Fri',
-        iconSVG: LocationSVG,
-        href: 'https://www.google.com/maps/place/Better+Living+Health+Center+%26+Deli/@25.0520409,-77.3411241,17z/data=!3m1!4b1!4m5!3m4!1s0x892f7cf3e356694f:0xc0a7b646959a205d!8m2!3d25.0520361!4d-77.3389301',
-    },
+	{
+		title: "idamaehanna@coralwave.com",
+		iconSVG: MailSVG,
+		href: "mailto:idamaehanna@coralwave.com",
+	},
+	{
+		title: "323-5473 or 328-5658",
+		iconSVG: PhoneSVG,
+		href: "tel:2423235473",
+	},
+	{
+		title: "Facebook",
+		iconSVG: FacebookSVG,
+		href: "https://www.facebook.com/Better-Living-Health-Center-Deli-1477766185772763",
+	},
+	{
+		title: "Balfour Ave. & Palm Beach St.\n7:30am - 4pm, Mon - Fri",
+		iconSVG: LocationSVG,
+		href: "https://www.google.com/maps/place/Better+Living+Health+Center+%26+Deli/@25.0520409,-77.3411241,17z/data=!3m1!4b1!4m5!3m4!1s0x892f7cf3e356694f:0xc0a7b646959a205d!8m2!3d25.0520361!4d-77.3389301",
+	},
 ];
 
 interface AdditionalLink {
